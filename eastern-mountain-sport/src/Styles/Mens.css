@@ -1,0 +1,58 @@
+a {
+    text-align: center;
+    color: grey;
+}
+a:hover{
+    color: blue;
+}
+#title{
+    font-weight: 700;
+    line-height: 29px;
+    text-align: center;
+    font-size: 24px;
+    display: block;
+    padding-top: 20px;
+}
+#mainbox{
+    border: 1px solid black;
+    height: 4000px;
+    width: 95%;
+    margin: auto;
+    display: flex;
+    justify-content: space-between;
+}
+#firstbox{
+    border: 1px solid red;
+    width: 280px;
+    height: 100%;
+
+}
+#secondbox{
+    border: 1px solid purple;
+    width: 1080px;
+    height: 100%;
+}
+#perpage{
+    display: flex;
+    height: 48px;
+    border: 1px solid red;
+    font-size: 14px;
+    font-weight: 500;
+    padding: 0 8px 8px 8px;
+    justify-content: end;
+}
+#perpage>p{
+    margin-right: 20px;
+}
+#page10{
+height: 40px;
+padding: 0 24px 0 10px;
+margin-left: 10px;
+margin-top: 5px;
+border: 1px solid rgb(168, 153, 153);
+}
+#products{
+    border: 1px solid purple;
+    height: 3000px;
+    margin-top: 20px;
+}
