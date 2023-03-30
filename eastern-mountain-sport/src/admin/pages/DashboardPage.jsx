@@ -4,8 +4,10 @@ import Chart from 'chart.js/auto';
 import axios from 'axios';
 import {Line} from 'react-chartjs-2';
 import {PolarArea} from 'react-chartjs-2'; 
+import { useLocation } from 'react-router-dom';
 
 export default function DashboardPage() {
+  const location=useLocation();
   const [products,setProducts]=useState([]);
   const [productsData,setProductsData]=useState({
     labels: [
@@ -24,6 +26,7 @@ export default function DashboardPage() {
       ]
     }]
   })
+
   const [usersData,setUsersData]=useState({
     labels: ['January', 'February', 'March', 'April', 'May', 'June'],
     datasets: [{
@@ -54,14 +57,17 @@ export default function DashboardPage() {
     let obj={...productsData,datasets:productsData.datasets[0].data=data};
     // console.log(2);
   }
-  // console.log(products);
+  // console.log(location);
 
   useEffect(()=>{
     getData();
-  },[])
+  },[location]);
 
   return (
-    products.length <=0 ? <Spinner size={'xl'}/>:<Grid w={'50%'} gridTemplateColumns={{base:'repeat(1,100%)',md:'repeat(2,40%)'}} gap={'20%'} m='auto'>
+    products.length <=0 ? <div style={{textAlign:'center'}}>
+      <Spinner size={'xl'}/>
+      </div>
+      :<Grid w={'50%'} gridTemplateColumns={{base:'repeat(1,100%)',md:'repeat(2,40%)'}} gap={'20%'} m='auto'>
       <Box>
         {products?.length>0 ?<PolarArea data={productsData}/>:''}
       </Box>

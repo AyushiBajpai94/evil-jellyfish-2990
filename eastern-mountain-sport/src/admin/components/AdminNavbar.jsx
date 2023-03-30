@@ -3,7 +3,6 @@ import {
   Flex,
   Avatar,
   HStack,
-  Link,
   IconButton,
   Button,
   Menu,
@@ -16,6 +15,7 @@ import {
   Stack,
 } from '@chakra-ui/react';
 import { HamburgerIcon, CloseIcon } from '@chakra-ui/icons';
+import { Link } from 'react-router-dom';
 
 const Links =[
   {
@@ -23,7 +23,7 @@ const Links =[
     link:'/dashboard'
   },{
     name:'Products',
-    link:'#'
+    link:'/admin-products'
   },{
     name:'Users',
     link:'#'
@@ -45,7 +45,7 @@ const NavLink = ({children,link }) => (
       textDecoration: 'none',
       bg: useColorModeValue('gray.200', 'gray.700'),
     }}
-    href={link}>
+    to={link}>
     {children}
   </Link>
 );
@@ -55,7 +55,7 @@ export default function AdminNavbar() {
 
   return (
     <>
-      <Box bg={useColorModeValue('gray.100', 'gray.900')} px={4} position={'fixed'} w={'100%'}>
+      <Box bg={useColorModeValue('gray.100', 'gray.900')} px={4} position={'fixed'} w={'100%'} zIndex={100}>
         <Flex h={16} alignItems={'center'} justifyContent={{base:'start',md:'center'}}>
           <IconButton
             size={'md'}
