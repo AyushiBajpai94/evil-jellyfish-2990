@@ -1,9 +1,9 @@
-import { Box, Button, Input, Modal, ModalBody, ModalCloseButton, ModalContent, ModalFooter, ModalHeader, ModalOverlay, Select, useDisclosure } from "@chakra-ui/react"
+import { Button, Input, Modal, ModalBody, ModalCloseButton, ModalContent, ModalFooter, ModalHeader, ModalOverlay, Select, useDisclosure } from "@chakra-ui/react"
 import axios from "axios";
-import { useEffect, useState } from "react"
+import { useState } from "react";
 
-export default function AddProduct({Margin,setReload,reloadFlag}) {
-    const { isOpen, onOpen, onClose } = useDisclosure()
+export default function EditProduct() {
+    const { isOpen, onOpen, onClose } = useDisclosure();
     const [ProductData,setProductData]=useState({
         name:'',
         image:'',
@@ -30,9 +30,10 @@ export default function AddProduct({Margin,setReload,reloadFlag}) {
                 color_image:'',
                 category:''
             })
-            setReload(!reloadFlag);
         })
         }
+
+
 
     function dataAdd(e){
         setProductData({...ProductData,[e.target.name]:e.target.value});
@@ -40,13 +41,13 @@ export default function AddProduct({Margin,setReload,reloadFlag}) {
 
 
     return (
-      <Box mt={Margin} textAlign='center'>
-        <Button onClick={onOpen}>Add New Product</Button>
+      <>
+        <Button onClick={onOpen}>Edit</Button>
   
         <Modal isOpen={isOpen} onClose={onClose}>
           <ModalOverlay />
           <ModalContent>
-            <ModalHeader textAlign={'center'}>Add New Product</ModalHeader>
+            <ModalHeader textAlign={'center'}>Edit Product</ModalHeader>
             <ModalCloseButton />
             <ModalBody>
                 <form style={{textAlign:'center'}} onSubmit={addNow}>
@@ -61,20 +62,18 @@ export default function AddProduct({Margin,setReload,reloadFlag}) {
                     <option value={'Womens'}>Womens</option>
                     <option value='Kids'>Kids</option>
                     </Select> 
-                    <Button type="submit" variant='solid' colorScheme='blue'>Add</Button>
+                    <Button type="submit" variant='solid' colorScheme='blue'>Update</Button>
                 </form>
             </ModalBody>
   
-              {/* <ModalFooter>
-                <Button  mr={3} variant='ghost' onClick={()=>{
-                  onClose();
-                  setReload(!reloadFlag);
-                }}>
-                  Cancel
-                </Button>
-              </ModalFooter> */}
+            {/* <ModalFooter>
+              <Button colorScheme='blue' mr={3} onClick={onClose}>
+                Close
+              </Button>
+              <Button variant='ghost'>Secondary Action</Button>
+            </ModalFooter> */}
           </ModalContent>
         </Modal>
-      </Box>
+      </>
     )
   }

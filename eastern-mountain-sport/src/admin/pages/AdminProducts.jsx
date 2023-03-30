@@ -6,6 +6,7 @@ import ProductCard from '../components/ProductCard';
 
 export default function AdminProducts() {
     const[mainData,setMainData]=useState([]);
+    const [reloadFlag,setReload]=useState(false);
 
     function getDataApi(){
         const data=[];
@@ -31,22 +32,24 @@ export default function AdminProducts() {
 
     useEffect(()=>{
         getDataApi();
-    },[])
+    },[reloadFlag])
 
 
 
-  return mainData.length<=0? <div style={{textAlign:'center'}}>
+  return<Box display={'flex'} flexDirection="column" w={'100%'}>
+    <Box w='60%' m={'auto'} mb={'10'}>
+    <Input type={'search'} placeholder='Search Products'/>
+    <AddProduct Margin={'10px'}  setReload={setReload} reloadFlag={reloadFlag}/>
+    </Box> 
+    {mainData.length<=0? <div style={{textAlign:'center'}}>
   <Spinner size={'xl'}/>
   </div>
-  : <Box display={'flex'} flexDirection="column" w={'100%'}>
-    <Box mb={'10'}>
-    <Input type={'search'} placeholder='Search Products'/>
-    <AddProduct Margin={'10px'}/>
-    </Box>
+  : 
     <Grid gridTemplateColumns={{base:'repeat(1,1fr)',md:'repeat(2,1fr)',lg:'repeat(4,24%)'}} gap={{md:'1%'}} width={'80%'} m='auto'>
     {mainData?.length>0 && mainData.map((ele,index)=>(
         <ProductCard key={index} {...ele}/>
         ))}
     </Grid>
+    }
   </Box>
 }
