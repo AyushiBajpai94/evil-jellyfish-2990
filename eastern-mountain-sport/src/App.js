@@ -1,7 +1,7 @@
 import AdminRoutes from './admin/pages/AdminRoutes';
 import './App.css';
-
 import { Navbar } from './Components/Navbar';
+import Checkout from './Pages/CartPage/Checkout';
 
 
 
@@ -9,10 +9,7 @@ import { Navbar } from './Components/Navbar';
 function App() {
   return (
     <div className="App">
-
-      {/* <Navbar/> */}
-      <AdminRoutes/>
-
+      <Navbar />
     </div>
   );
 }
