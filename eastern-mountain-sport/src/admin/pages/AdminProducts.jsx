@@ -1,0 +1,52 @@
+import { Box, Button, Container, Divider, Grid, Input, Spinner } from '@chakra-ui/react'
+import axios from 'axios';
+import React, { useEffect, useState } from 'react'
+import AddProduct from '../components/AddProduct';
+import ProductCard from '../components/ProductCard';
+
+export default function AdminProducts() {
+    const[mainData,setMainData]=useState([]);
+
+    function getDataApi(){
+        const data=[];
+        axios.get(`https://rich-plum-lamb-garb.cyclic.app/Mens`)
+        .then((res)=>{
+            // console.log(res.data);
+            data.push(...res.data);
+        }).catch((err)=>{
+            console.log('dataFetching error');
+        })
+        axios.get(`https://rich-plum-lamb-garb.cyclic.app/Womens`)
+        .then((res)=>{
+            // console.log(res.data);
+            data.push(...res.data);
+            // console.log(data);
+        }).catch((err)=>{
+            console.log('dataFetching error');
+        }).finally(()=>{
+            setMainData(data);
+        })
+    }
+
+
+    useEffect(()=>{
+        getDataApi();
+    },[])
+
+
+
+  return mainData.length<=0? <div style={{textAlign:'center'}}>
+  <Spinner size={'xl'}/>
+  </div>
+  : <Box display={'flex'} flexDirection="column" w={'100%'}>
+    <Box mb={'10'}>
+    <Input type={'search'} placeholder='Search Products'/>
+    <AddProduct Margin={'10px'}/>
+    </Box>
+    <Grid gridTemplateColumns={{base:'repeat(1,1fr)',md:'repeat(2,1fr)',lg:'repeat(4,24%)'}} gap={{md:'1%'}} width={'80%'} m='auto'>
+    {mainData?.length>0 && mainData.map((ele,index)=>(
+        <ProductCard key={index} {...ele}/>
+        ))}
+    </Grid>
+  </Box>
+}
