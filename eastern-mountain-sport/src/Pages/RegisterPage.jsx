@@ -19,6 +19,20 @@ import {
   
   export default function RegisterPage() {
     const [showPassword, setShowPassword] = useState(false);
+    const [formData,setData]=useState({
+      firstName:'',
+      lastName:'',
+      email:'',
+      password:''
+    });
+     const handleChange=(e)=>{
+      setData({...formData,[e.target.name]:e.target.value})
+     };
+     const handleSubmit=(e)=>{
+      e.preventDefault()
+     console.log(formData)
+      
+      };
   
     return (
       <Flex
@@ -32,35 +46,43 @@ import {
               Create Account
             </Heading>
           </Stack>
+          
           <Box
           border={'2px solid #bfbfbf'}
             // rounded={'lg'}
             bg={useColorModeValue('#f4efde', 'gray.700')}
             boxShadow={'lg'}
             p={8}>
+            
             <Stack spacing={4}>
               <HStack>
                 <Box>
                   <FormControl id="firstName" isRequired>
                     <FormLabel>First Name</FormLabel>
-                    <Input type="text"  bgColor={'white'}/>
+                    <Input type="text"  bgColor={'white'}  name='firstName' value={formData.firstName} onChange={handleChange}
+                     />
                   </FormControl>
                 </Box>
                 <Box>
                   <FormControl id="lastName" isRequired>
                     <FormLabel>Last Name</FormLabel>
-                    <Input type="text" bgColor={'white'} />
+                    <Input type="text" bgColor={'white'}  name='lastName' value={formData.lastName}  onChange={handleChange}
+                     />
                   </FormControl>
                 </Box>
               </HStack>
               <FormControl id="email" isRequired>
                 <FormLabel>Email address</FormLabel>
-                <Input type="email" bgColor={'white'}/>
+                <Input type="email" bgColor={'white'}  name='email' value={formData.email} 
+                   onChange={handleChange}
+                />
               </FormControl>
               <FormControl id="password" isRequired>
                 <FormLabel>Password</FormLabel>
                 <InputGroup>
-                  <Input type={showPassword ? 'text' : 'password'} bgColor={'white'}/>
+                  <Input type={showPassword ? 'text' : 'password'} bgColor={'white'}  name='password' value={formData.password}
+                   onChange={handleChange}
+                  />
                   <InputRightElement h={'full'}>
                     <Button
                       variant={'ghost'}
@@ -73,7 +95,7 @@ import {
                 </InputGroup>
               </FormControl>
               <Stack spacing={10} pt={2}>
-                <Button
+                <Button onClick={handleSubmit}
                   loadingText="Submitting"
                   size="lg"
                   bg={'blue.400'}
