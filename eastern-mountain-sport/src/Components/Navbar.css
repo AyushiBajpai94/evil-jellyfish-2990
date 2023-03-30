@@ -1,0 +1,342 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  }
+
+html{
+    font-size: 62.5%;
+}
+.nav{
+    /* border: 1px solid black; */
+    width: 100%;
+    height: 7rem;
+    display: grid;
+    align-items: center;
+    grid-template-columns: 100px 1fr 2fr 1fr 100px;
+    padding: 10px 0px 10px 0px;
+  border-bottom: 1px solid #eae7e7;
+  border-top: 1px solid #eae7e7;
+}
+.logofornav{
+    grid-column: 2/3;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    /* border: 1px solid black; */
+    height: 5rem;
+    /* justify-content: space-between; */
+}
+
+.logofornav img{
+ width: 20%;
+ height: 100%;
+
+}
+
+
+.h1tag{
+    
+    width: 75%;
+    height:5rem;
+    font-size: 1.4rem;
+    font-weight: 1000;
+    color: rgb(54, 62, 87);
+    font-family:'Courier New', Courier, monospace;
+    margin-top: 5px;
+}
+
+.search {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    text-align: center;
+    grid-column: 3/4;
+    width: 100%;
+    /* border: 1px solid red; */
+  }
+  
+  .search__input {
+    border: 1px solid rgb(189, 186, 186);
+    color: #353333;
+    padding: 5px;
+    background-color : white ;
+    border-radius: 2px;
+    width: 100%;
+    height: 4rem;
+    transition: all ease-in-out .5s;
+    margin-right: -8rem;
+  }
+  
+  .search__button {
+    width: 10%;
+    border: none;
+    border-right: 1px solid rgb(189, 186, 186);
+    border-radius: 2px;
+    margin-top: .1em;
+    background-color : rgba(255, 255, 255, 0) ;
+  }
+  
+  .search__button:hover {
+    cursor: pointer;
+  }
+  
+  .search__icon {
+    height: 1.3em;
+    width: 1.3em;
+  }
+.iconfornav{
+    width: 100%;
+    height: 5rem;
+    grid-column: 4/5;
+}
+.ulofnavicon{
+    height: 100%;
+    display: grid;
+    grid-template-columns: 1fr repeat(3, 1fr);
+    align-items: center;
+    justify-content: flex-end;
+    
+}
+.ulofnavicon li{
+    list-style: none;
+    font-size: 25px;
+    text-align: right;
+}
+.iconcolor{
+    color: black;
+    font-weight: 400;
+}
+.iconcolor:hover{
+  color: rgb(255, 115, 0);
+}
+.hamburger-menu{
+  display: none;
+}
+.mobile-menu-link{
+  display: none;
+}
+
+@media (max-width: 950px){
+  .nav{
+    grid-template-columns: 3rem 2fr 2fr 1fr 3rem;
+  }
+  .ulofnavicon{
+    display: none;
+  }
+  .hamburger-menu{
+    display: block;
+     font-size: 2.5rem;
+     display: flex;
+    justify-content: right;
+    margin-top: 1rem;
+    
+  }
+  .mobile-menu-link {
+    grid-column: 2/4;
+    position: relative;
+    z-index: 99;
+  }
+
+  .mobile-menu-link {
+    background-color: white;
+    height: 20rem;
+    display: grid;
+    grid-column: 2/5;
+    align-items: center;
+    padding-left: 3rem;
+    transition: all 2s linear;
+    transform-origin: top;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px,
+      rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;
+  }
+
+  .mobile-menu-link ul {
+    height: 20rem;
+    display: flex;
+    justify-content: space-around;
+    flex-direction: column;
+    align-items: start;
+  }
+
+  .mobile-menu-link ul li:first-child {
+    transition-delay: 0.2s;
+  }
+}
+.dropdown {
+  width: 87%;
+  margin: auto;
+  position: relative;
+  z-index: 999;
+}
+
+.dropdown ul {
+  list-style: none;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width:100%;
+  gap: 0px;
+  /* border: 1px solid black; */
+}
+
+.dropdown ul li {
+  position: relative;
+}
+
+.dropdown ul li a {
+  color: #0c0202;
+  text-decoration: none;
+  padding: 15px 20px;
+  display: block;
+  font-size: 14px;
+  font-weight: 530;
+}
+
+.dropdown ul li>a:hover {
+  background-color: #f2f2f2;
+  border-bottom: 2.5px solid rgb(255, 119, 0);
+  color: rgb(255, 119, 0);
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: white;
+  width: max-content;
+  z-index: 1;
+  padding: 30px;
+  border: 1px solid black;
+}
+
+.dropdown ul li:hover .dropdown-content {
+  display: block;
+}
+
+.row {
+  display: flex;
+  width: 100%;
+}
+
+.col {
+  flex: 1;
+}
+
+.dropdown-content>div>div a {
+  display: block;
+  padding: 0px 8px;
+  font-weight: 400;
+  font-size: 14px;
+  color: rgb(3, 0, 0);
+  text-decoration: none;
+}
+
+.col>div {
+  margin-top: 25px;
+  margin-right: 7px;
+  margin-left: 7px;
+}
+
+.col>div:first-child {
+  margin-top: 0px;
+}
+
+.col a:hover {
+  color: #ff8a00;
+}
+.dropdown{
+  white-space: nowrap;
+}
+
+.greendiv{
+  background-color: rgba(2, 47, 30, 0.357);
+  display: flex;
+  justify-content: center;
+  justify-content: space-between;
+  align-items: center;
+  height: 4rem;
+  font-size: 13px;
+  padding-left: 80px;
+  color: #353333;
+}
+.greendiv>div:nth-child(2){
+    display: flex;
+    margin-right: 80px;
+}
+
+.greendiv>div:nth-child(2) a{
+    color: #353333;
+    text-decoration: none;
+    font-weight: bolder;
+}
+
+.greendiv>div:nth-child(2) a:hover{
+    cursor: pointer;
+    text-decoration: underline;
+}
+
+/* .topdiv{
+  width: 85%;
+  margin: auto;
+  height: 3rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  text-align: center;
+  font-size: 13px;
+  font-weight: 510;
+}
+.topdiv>div:first-child {
+  width: 14%;
+  display: flex;
+  justify-content: space-between;
+}
+.topdiv>div:last-child{
+  width: 24%;
+  display: flex;
+  justify-content: space-between; 
+} */
+
+.h1tag>img{
+    width: 200px;
+    height: 200px;
+    justify-content: start;
+}
+
+.linktopdiv{
+  text-decoration: none;
+  color: black;
+}
+.linktopdiv:hover{
+  color: rgb(255, 119, 0) ;
+}
+.logincomp{
+  /* border: 1px solid black; */
+  display: block;
+  margin-left: 20px;
+  width: 100%;
+  text-align: center;
+}
+.logincomp p{
+  font-size: 10px;
+  color: rgb(54, 62, 87);
+}
+.logoutbtn{
+  width: 70%;
+  height: 3rem;
+  margin-right: 15%;
+  background-color: rgb(255, 115, 0);
+  color: white;
+  border: none;
+  border-radius: 5px;
+}
+.loginbtn{
+  width: 100%;
+  height: 3rem;
+  margin-right: 15%;
+  background-color: rgb(255, 255, 254);
+  color: rgb(255, 115, 0);
+  border: 2px solid rgb(255, 115, 0);
+  border-radius: 5px;
+}
