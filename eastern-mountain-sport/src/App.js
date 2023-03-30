@@ -1,11 +1,15 @@
 import './App.css';
-import Navbar from './admin/components/AdminNavbar';
-import AdminRoutes from './admin/pages/AdminRoutes';
+
+import { Navbar } from './Components/Navbar';
+
 
 
 function App() {
   return (
     <div className="App">
+
+      <Navbar/>
+
     </div>
   );
 }
