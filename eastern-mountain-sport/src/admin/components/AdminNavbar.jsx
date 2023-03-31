@@ -74,6 +74,7 @@ export default function AdminNavbar() {
               ))}
             </HStack>
           </HStack>
+          <Button>Logout</Button>
         </Flex>
 
         {isOpen ? (
