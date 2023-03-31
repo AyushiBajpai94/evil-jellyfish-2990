@@ -8,7 +8,7 @@ import { BrowserRouter } from 'react-router-dom';
 import {Provider} from "react-redux"
 import { store } from './Redux/store';
 
-import { AdminStore} from './admin/AdminRedux/AdminStore';
+
 
 
 
@@ -16,7 +16,9 @@ const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <BrowserRouter>
   <Provider store={store}> 
+
   <ChakraProvider>  
+
     <App />
   </ChakraProvider>
   </Provider>
@@ -28,3 +30,8 @@ root.render(
 // to log results (for example: reportWebVitals(console.log))
 // or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
 reportWebVitals();
+
+
+// {/* <Provider store={AdminStore}> */}
+// <App />
+// {/* </Provider> */}
