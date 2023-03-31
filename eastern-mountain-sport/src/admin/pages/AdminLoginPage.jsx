@@ -24,7 +24,7 @@ export default function AdminLoginPage() {
     e.preventDefault();
     dispatch(AdminDataNow);
     dispatch(AdminLoginNow(loginData)).then(()=>{
-      navi(location.state,{replace:true});
+      navi(`${location.state? location.state:'/dashboard'}`,{replace:true});
     })
     setData({
       email:'',
