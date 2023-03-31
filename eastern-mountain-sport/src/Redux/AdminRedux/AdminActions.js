@@ -1,5 +1,5 @@
 import axios from "axios";
-import { LoginReq,DataExtractFail,DataExtractReq,DataExtractSucc } from "./AdminActionList"
+import { LoginReq,DataExtractFail,DataExtractReq,DataExtractSucc, Logout } from "./AdminActionList"
 
 
 
@@ -22,6 +22,10 @@ export const AdminLoginNow=(data)=>async (dispatch)=>{
     // else{
     //     return null;
     // }
+}
+
+export const AdminLogout=(dispatch)=>{
+    dispatch({type:Logout});
 }
 
 export const AdminDataNow=(dispatch)=>{

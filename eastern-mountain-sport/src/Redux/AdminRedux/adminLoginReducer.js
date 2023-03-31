@@ -1,4 +1,4 @@
-import { DataExtractFail, DataExtractReq, DataExtractSucc, LoginReq } from "./AdminActionList";
+import { DataExtractFail, DataExtractReq, DataExtractSucc, LoginReq, Logout } from "./AdminActionList";
 
 const init={
     isAuth:false,
@@ -13,6 +13,12 @@ export function adminLoginReducer(state=init,action){
                 isAuth:true,
                 token:action.payload
             }
+        case Logout:
+            return{
+                ...state,
+                isAuth:false,
+                token:''
+            }    
         default:
             return state;
     }
