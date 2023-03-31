@@ -1,78 +1,153 @@
-import React, { useState } from "react";
-import { FaSearchLocation, FaShoppingCart, FaRegHeart } from "react-icons/fa"
-import "./Navbar.css"
-import { GiHamburgerMenu } from "react-icons/gi"
-// import img1 from "../images/Untitled design (1).png"
-import { Link } from "react-router-dom";
+import "./Navbar.css";
+import {FaUserAlt,FaShoppingCart} from "react-icons/fa"
+
+//import logo from "./logo1.png"
+import {Text, Box,Image, Input,Flex} from "@chakra-ui/react"
+//import logo1 from "../components/logo1"
 import logo from "../Logo/AS-removebg-preview.png"
-export function Navbar(props) {
-    const [showIcons, setShowIcons] = useState(false);
-    const [value, setValue] = useState("");
-    const handlehamburger = () => setShowIcons(!showIcons)
-    return (
-        <>
-            <div className="greendiv">
-                <div>
-                <h3 style={{ fontWeight: "555" }}>Rewards | AS Sale | goAdventurus </h3>
-                </div>
-                <div>
-                <Link style={{ fontWeight: "555" }}>Free Ground Shipping over $99 | </Link>
-                <h3>Find a Store | </h3>
-                <h3>Help</h3>
-                </div>
-            </div>
-            {/* <div className="topdiv">
-                <div>
-                    <Link to="" className="linktopdiv"><FiHelpCircle />   Help</Link>
-                    <Link to="" className="linktopdiv"><FaSearchLocation />   Track Order</Link>
+function Navbar(){
 
-                </div>
-                <div>
-                    <Link to="" className="linktopdiv">Stores</Link>
-                    <Link to="" className="linktopdiv">Bulk Order</Link>
-                    <Link to="" className="linktopdiv">Gift Cards</Link>
-                    <Link to="" className="linktopdiv">UL Services</Link>
 
-                </div>
-            </div> */}
-            <nav className="nav">
-                <Link to="/" className="logofornav" style={{ textDecoration: 'none' }}>
 
-                    {/* <img src={img1} alt="Logo" /> */}
-                    <div className="h1tag">
-                       <img className="Logo" src={logo} alt="" />
 
-                    </div>
-
-                </Link>
-
-                <div className="search">
-                    <input type="text" className="search__input" placeholder="Search" value={value} onChange={(e) => setValue(e.target.value)} />
-                    <button type="submit" className="search__button" onSubmit={props.doIt}>
-                        <svg className="search__icon" aria-hidden="true" viewBox="0 0 24 24">
-                            <g>
-                                <path d="M21.53 20.47l-3.66-3.66C19.195 15.24 20 13.214 20 11c0-4.97-4.03-9-9-9s-9 4.03-9 9 4.03 9 9 9c2.215 0 4.24-.804 5.808-2.13l3.66 3.66c.147.146.34.22.53.22s.385-.073.53-.22c.295-.293.295-.767.002-1.06zM3.5 11c0-4.135 3.365-7.5 7.5-7.5s7.5 3.365 7.5 7.5-3.365 7.5-7.5 7.5-7.5-3.365-7.5-7.5z"></path>
-                            </g>
-                        </svg>
-                    </button>
-
-                </div>
-                <div className="iconfornav">
-                    <ul className="ulofnavicon">
-                        <li><Link to="/"><FaRegHeart className="iconcolor" /></Link></li>
-                        <li><Link to="/"><FaSearchLocation className="iconcolor" /></Link></li>
-                        <li><Link to="/CartPage"><FaShoppingCart className="iconcolor" /></Link></li>
-                        
-                    </ul>
-
-                    <div className="hamburger-menu" onClick={handlehamburger}>
-                        <a href="./" onClick={() => setShowIcons(!showIcons)}>
-                            <GiHamburgerMenu />
-                        </a>
-                    </div>
-                </div>
-            </nav>
+    return(
+            <>
+                           
+        <Box display="flex"  justifyContent="space-between" px="20px" color="white" bgColor="#313F35">
+            <Box>
+                <a href="/">Rewards</a>|
+                <a href="/">EMS Schools</a>|
+                <a href="/">goEast</a>
+            </Box>
+            <Box>
+                <a href="/">Your cart qualifies for Free Ground Shipping</a>|
+                <a href="/">Find a Store</a>|
+                <a href="/">HELP</a>
+            </Box>
+        </Box>
+        <Box display="flex"  justifyContent="space-evenly" padding={"10px 10px"} border="1px solid black">
            
-        </>
+            <Box><Image boxSize='180px' src={logo}  /></Box>
+            <Box><Input marginTop={"30px"}  width='500px' size='md' focusBorderColor='pink.400'
+    placeholder='Search...'/></Box>
+          <Text marginTop={"30px"} fontSize='xl'> <FaUserAlt/> My Accounts</Text>
+           <Text marginTop={"30px"} fontSize='xl'> <FaShoppingCart/>Cart</Text>
+        </Box> 
+      <Flex justifyContent="space-evenly" bgColor="#fff" border="1px solid black">
+        <div className="dropdown">
+      <button className="dropbtn">MEN</button>
+      <div className="dropdown-content">
+        <a href="#home">Link1</a>
+        <a href="#home">Link2</a>
+        <a href="#home">Link3</a>
+        <a href="#home">Link4</a>
+      </div>
+      </div>
+      <div className="dropdown">
+      <button className="dropbtn">WOMEN</button>
+      <div className="dropdown-content">
+        <a href="#home">Link1</a>
+        <a href="#home">Link2</a>
+        <a href="#home">Link3</a>
+        <a href="#home">Link4</a>
+      </div>
+    </div>
+    <div className="dropdown">
+      <button className="dropbtn">KIDS</button>
+      <div className="dropdown-content">
+        <a href="#home">Link1</a>
+        <a href="#home">Link2</a>
+        <a href="#home">Link3</a>
+        <a href="#home">Link4</a>
+      </div>
+    </div>
+     <div className="dropdown">
+      <button className="dropbtn">FOOTWEAR</button>
+      <div className="dropdown-content">
+        <a href="#home">Link1</a>
+        <a href="#home">Link2</a>
+        <a href="#home">Link3</a>
+        <a href="#home">Link4</a>
+      </div>
+    </div>
+    <div className="dropdown">
+      <button className="dropbtn">CAMP & HIKE</button>
+      <div className="dropdown-content">
+        <a href="#home">Link1</a>
+        <a href="#home">Link2</a>
+        <a href="#home">Link3</a>
+        <a href="#home">Link4</a>
+      </div>
+    </div>
+    <div className="dropdown">
+      <button className="dropbtn">CLIMB</button>
+      <div className="dropdown-content">
+        <a href="#home">Link1</a>
+        <a href="#home">Link2</a>
+        <a href="#home">Link3</a>
+        <a href="#home">Link4</a>
+      </div>
+    </div>
+    <div className="dropdown">
+      <button className="dropbtn">SNOW</button>
+      <div className="dropdown-content">
+        <a href="#home">Link1</a>
+        <a href="#home">Link2</a>
+        <a href="#home">Link3</a>
+        <a href="#home">Link4</a>
+      </div>
+    </div>
+    <div className="dropdown">
+      <button className="dropbtn">CYCLE</button>
+      <div className="dropdown-content">
+        <a href="#home">Link1</a>
+        <a href="#home">Link2</a>
+        <a href="#home">Link3</a>
+        <a href="#home">Link4</a>
+      </div>
+    </div>
+    <div className="dropdown">
+      <button className="dropbtn">ACTIVITIES</button>
+      <div className="dropdown-content">
+        <a href="#home">Link1</a>
+        <a href="#home">Link2</a>
+        <a href="#home">Link3</a>
+        <a href="#home">Link4</a>
+      </div>
+    </div>
+    <div className="dropdown">
+      <button className="dropbtn">BRANDS</button>
+      <div className="dropdown-content">
+        <a href="#home">Link1</a>
+        <a href="#home">Link2</a>
+        <a href="#home">Link3</a>
+        <a href="#home">Link4</a>
+      </div>
+    </div>
+    <div className="dropdown">
+      <button className="dropbtn">SALE & OUTLET</button>
+      <div className="dropdown-content">
+        <a href="#home">Link1</a>
+        <a href="#home">Link2</a>
+        <a href="#home">Link3</a>
+        <a href="#home">Link4</a>
+      </div>
+    </div>
+    </Flex>
+
+
+
+      
+
+
+
+
+    </>
+
+
+
+
     )
 }
+
+export default Navbar;
