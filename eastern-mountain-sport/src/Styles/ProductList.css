@@ -7,5 +7,6 @@
 .cards {
     /* border: 1px solid black; */
     cursor: pointer;
+    color: black;
 }
 

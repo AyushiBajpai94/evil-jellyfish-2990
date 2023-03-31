@@ -7,7 +7,6 @@ import {
     chakra,
     Tooltip,
 } from '@chakra-ui/react';
-import { FiShoppingCart } from 'react-icons/fi';
 import styles from "../Styles/ProductList.css"
 
 function ProductCard({ image, name , price, discount, brand }) {
@@ -20,13 +19,14 @@ function ProductCard({ image, name , price, discount, brand }) {
                     // border={"1px solid red"} 
                     // bg={useColorModeValue('cyan.50', 'gray.800')}
                     borderWidth="1px"
-                    rounded="lg"
-                    // shadow="lg"
+                    // rounded="lg"
+                    shadow="sm"
                     position="relative"
                 >
                     <Image
-                        w={250}
+                        w={240}
                         h={300}
+                        border={"1px solid red"} 
                         // border={"1px solid red"} 
                         padding={"5px"}
                         src={img}
@@ -72,12 +72,13 @@ function ProductCard({ image, name , price, discount, brand }) {
                             <Box fontSize="15px"
                                 fontWeight="bold"
                                 as="h6"
+                                color={"red"}
                                 marginRight={"7px"}
                                 lineHeight="tight">
                                 ${price}
                             </Box>
-                            <Box as="span" color={'red'} fontSize="13px">
-                                {` Up to (${discount} % OFF) `}
+                            <Box as="span" color={'green'} fontWeight="500" fontSize="13px">
+                                {` Up to ${discount}% off `}
                             </Box>
                         </Flex>
                     </Box>
