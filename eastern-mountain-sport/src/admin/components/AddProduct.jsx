@@ -2,7 +2,7 @@ import { Box, Button, Input, Modal, ModalBody, ModalCloseButton, ModalContent, M
 import axios from "axios";
 import { useEffect, useState } from "react"
 
-export default function AddProduct({Margin,setReload,reloadFlag}) {
+export default function AddProduct({Margin,setReload,reloadFlag,setMainData}) {
     const { isOpen, onOpen, onClose } = useDisclosure()
     const [ProductData,setProductData]=useState({
         name:'',
@@ -30,6 +30,7 @@ export default function AddProduct({Margin,setReload,reloadFlag}) {
                 color_image:'',
                 category:''
             })
+            setMainData([]);
             setReload(!reloadFlag);
         })
         }

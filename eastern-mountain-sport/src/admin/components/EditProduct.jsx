@@ -2,7 +2,7 @@ import { Button, Input, Modal, ModalBody, ModalCloseButton, ModalContent, ModalF
 import axios from "axios";
 import { useState } from "react";
 
-export default function EditProduct() {
+export default function EditProduct({id,cate,setReload,reloadFlag,setMainData}) {
     const { isOpen, onOpen, onClose } = useDisclosure();
     const [ProductData,setProductData]=useState({
         name:'',
@@ -16,21 +16,35 @@ export default function EditProduct() {
     function addNow(e){
         e.preventDefault();
 
-        axios.post(`https://rich-plum-lamb-garb.cyclic.app/${ProductData.category}`,{...ProductData,image:[ProductData.image],color_image:[ProductData.color_image],price:Number(ProductData.price)})
+        axios.patch(`https://rich-plum-lamb-garb.cyclic.app/${ProductData.category}/${id}`,ProductData)
         .then((res)=>{
             console.log(res);
         }).catch((err)=>{
-            console.log('product adding error',err);
+            console.log('product patching error',err);
         }).finally(()=>{  
             setProductData({
                 name:'',
-                image:'',
+                image:[''],
                 price:'',
                 brand:'',
-                color_image:'',
+                color_image:[''],
                 category:''
             })
+            setMainData([]);
+            setReload(!reloadFlag);
         })
+        }
+
+        function getDataApi(){
+            axios.get(`https://rich-plum-lamb-garb.cyclic.app/${cate}?id=${id}`)
+            .then((res)=>{
+                // console.log(...res.data);
+                if(res.data[0].name!==undefined){
+                    setProductData(...res.data);
+                }
+            }).catch((err)=>{
+                console.log('edit product fetch problem');
+            })
         }
 
 
@@ -42,7 +56,10 @@ export default function EditProduct() {
 
     return (
       <>
-        <Button onClick={onOpen}>Edit</Button>
+        <Button onClick={()=>{
+            onOpen();
+            getDataApi();
+        }}>Edit</Button>
   
         <Modal isOpen={isOpen} onClose={onClose}>
           <ModalOverlay />
@@ -52,10 +69,10 @@ export default function EditProduct() {
             <ModalBody>
                 <form style={{textAlign:'center'}} onSubmit={addNow}>
                     <Input type={'text'} name='name' placeholder="Name" value={ProductData.name} isRequired={true} onChange={dataAdd}/>
-                    <Input type={'text'} name='image' placeholder="Image" value={ProductData.image} isRequired={true} onChange={dataAdd}/>
+                    <Input type={'text'} name='image' placeholder="Image" value={ProductData.image[0]} isRequired={true} onChange={dataAdd}/>
                     <Input name="price" placeholder="Price" value={ProductData.price} isRequired={true} onChange={dataAdd}/>
                     <Input type={'text'} placeholder="Brand" value={ProductData.brand} isRequired={true} name='brand' onChange={dataAdd}/>
-                    <Input type={'text'} name='color_image' value={ProductData.color_image} placeholder="Color Image" isRequired={true} onChange={dataAdd}/>
+                    <Input type={'text'} name='color_image' value={ProductData.color_image[0]} placeholder="Color Image" isRequired={true} onChange={dataAdd}/>
                     <Select name="category" isRequired={true} value={ProductData.category} onChange={dataAdd}>
                     <option value={''}>Category</option>
                     <option value={'Mens'}>Mens</option>

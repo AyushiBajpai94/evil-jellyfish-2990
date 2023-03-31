@@ -39,7 +39,7 @@ export default function AdminProducts() {
   return<Box display={'flex'} flexDirection="column" w={'100%'}>
     <Box w='60%' m={'auto'} mb={'10'}>
     <Input type={'search'} placeholder='Search Products'/>
-    <AddProduct Margin={'10px'}  setReload={setReload} reloadFlag={reloadFlag}/>
+    <AddProduct Margin={'10px'}  setReload={setReload} reloadFlag={reloadFlag} setMainData={setMainData}/>
     </Box> 
     {mainData.length<=0? <div style={{textAlign:'center'}}>
   <Spinner size={'xl'}/>
@@ -47,7 +47,7 @@ export default function AdminProducts() {
   : 
     <Grid gridTemplateColumns={{base:'repeat(1,1fr)',md:'repeat(2,1fr)',lg:'repeat(4,24%)'}} gap={{md:'1%'}} width={'80%'} m='auto'>
     {mainData?.length>0 && mainData.map((ele,index)=>(
-        <ProductCard key={index} {...ele}/>
+        <ProductCard key={index} {...ele} setReload={setReload} reloadFlag={reloadFlag} setMainData={setMainData}/>
         ))}
     </Grid>
     }
