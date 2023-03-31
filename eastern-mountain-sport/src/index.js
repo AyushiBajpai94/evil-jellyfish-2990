@@ -7,7 +7,6 @@ import { ChakraProvider } from '@chakra-ui/react';
 import { BrowserRouter } from 'react-router-dom';
 import {Provider} from "react-redux"
 import { store } from './Redux/store';
-import { Provider } from 'react-redux';
 import { AdminStore} from './admin/AdminRedux/AdminStore';
 
 
@@ -16,9 +15,7 @@ root.render(
   <BrowserRouter>
   <Provider store={store}> 
   <ChakraProvider>
-    <Provider store={AdminStore}>
     <App />
-    </Provider>
   </ChakraProvider>
   </Provider>
   </BrowserRouter>

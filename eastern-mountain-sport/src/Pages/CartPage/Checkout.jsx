@@ -1,29 +1,45 @@
-import React from 'react'
+import React, { useState } from 'react'
 import styled from 'styled-components'
 
+const initState={
+   email:"",
+   firstname:"",
+   lastname:"",
+   country:"",
+   address:"",
+   city:"",
+   state:"",
+   zipcode:"",
+   phone:""
+} 
+
 function Checkout() {
+    const [address,setAddress]=useState(initState)
     return (
         <DIV >
-            <div className='email-address'>
-                <input type="email" />
-            </div>
-
             <div className='shipping-address'>
 
                 <form>
                     <h1>Shipping Address</h1>
+                    <label>Email</label>
+                    <input type="email" placeholder='Email' />
+
                     <label>First Name</label>
                     <input type="text" placeholder='First Name' />
+
                     <label>Last Name</label>
                     <input type="text" placeholder='Last Name' />
+
                     <label>Country</label>
                     <select name="">
                         <option value="india">India</option>
                         <option value="canada">Canada</option>
                         <option value="usa">USA</option>
                     </select>
+
                     <label>Address</label>
                     <input type="text" placeholder='Addreess' />
+                    
                     <label>City</label>
                     <input type="text" placeholder='City' />
 
