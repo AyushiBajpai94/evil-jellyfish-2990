@@ -16,6 +16,8 @@ import {
 } from '@chakra-ui/react';
 import { HamburgerIcon, CloseIcon } from '@chakra-ui/icons';
 import { Link } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { AdminLogout } from '../../Redux/AdminRedux/AdminActions';
 
 const Links =[
   {
@@ -52,6 +54,8 @@ const NavLink = ({children,link }) => (
 
 export default function AdminNavbar() {
   const { isOpen, onOpen, onClose } = useDisclosure();
+  const dispatch=useDispatch();
+
 
   return (
     <>
@@ -74,6 +78,9 @@ export default function AdminNavbar() {
               ))}
             </HStack>
           </HStack>
+          <Button onClick={()=>{
+            dispatch(AdminLogout);
+          }} >Logout</Button>
         </Flex>
 
         {isOpen ? (

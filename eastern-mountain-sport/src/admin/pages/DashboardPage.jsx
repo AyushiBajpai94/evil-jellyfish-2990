@@ -5,10 +5,18 @@ import axios from 'axios';
 import {Line} from 'react-chartjs-2';
 import {PolarArea} from 'react-chartjs-2'; 
 import { useLocation } from 'react-router-dom';
+import AdminNavbar from '../components/AdminNavbar';
+import {useSelector,useDispatch} from 'react-redux';
+import {AdminDataNow} from '../../Redux/AdminRedux/AdminActions';
 
 export default function DashboardPage() {
   const location=useLocation();
+  const store=useSelector((store)=>{
+    return store.dataExractorReducer.data;
+  })
+  const [reload,setReload]=useState(false);
   const [products,setProducts]=useState([]);
+  const dispatch=useDispatch();
   const [productsData,setProductsData]=useState({
     labels: [
       'Men',
@@ -61,19 +69,25 @@ export default function DashboardPage() {
 
   useEffect(()=>{
     getData();
-  },[location]);
+    dispatch(AdminDataNow);
+
+  },[]);
 
   return (
-    products.length <=0 ? <div style={{textAlign:'center'}}>
+      <>
+      <AdminNavbar/>
+    <div style={{marginTop:'100px'}}></div>
+    {products.length <=0 ? <div style={{textAlign:'center'}}>
       <Spinner size={'xl'}/>
-      </div>
-      :<Grid w={'50%'} gridTemplateColumns={{base:'repeat(1,100%)',md:'repeat(2,40%)'}} gap={'20%'} m='auto'>
+      </div>:
+      <Grid w={'50%'} gridTemplateColumns={{base:'repeat(1,100%)',md:'repeat(2,40%)'}} gap={'20%'} m='auto'>
       <Box>
         {products?.length>0 ?<PolarArea data={productsData}/>:''}
       </Box>
       <Box>
         <Line data={usersData}/>
       </Box>
-    </Grid>
+    </Grid>}
+      </>
   )
 }

@@ -2,6 +2,7 @@ import { Box, Button, Container, Divider, Grid, Input, Spinner } from '@chakra-u
 import axios from 'axios';
 import React, { useEffect, useState } from 'react'
 import AddProduct from '../components/AddProduct';
+import AdminNavbar from '../components/AdminNavbar';
 import ProductCard from '../components/ProductCard';
 
 export default function AdminProducts() {
@@ -36,7 +37,10 @@ export default function AdminProducts() {
 
 
 
-  return<Box display={'flex'} flexDirection="column" w={'100%'}>
+  return <>
+    <AdminNavbar/>
+    <div style={{marginTop:'100px'}}></div>
+    <Box display={'flex'} flexDirection="column" w={'100%'}>
     <Box w='60%' m={'auto'} mb={'10'}>
     <Input type={'search'} placeholder='Search Products'/>
     <AddProduct Margin={'10px'}  setReload={setReload} reloadFlag={reloadFlag} setMainData={setMainData}/>
@@ -52,4 +56,5 @@ export default function AdminProducts() {
     </Grid>
     }
   </Box>
+  </>
 }
