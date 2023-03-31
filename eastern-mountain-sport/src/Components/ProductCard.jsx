@@ -1,90 +1,97 @@
-import {
-    Flex,
-    Box,
-    Image,
-    useColorModeValue,
-    Icon,
-    chakra,
-    Tooltip,
-} from '@chakra-ui/react';
-import { FiShoppingCart } from 'react-icons/fi';
 import styles from "../Styles/ProductList.css"
+import { border, Box, Button, Container, Flex, HStack, Image, Text } from '@chakra-ui/react'
+import React, { useState } from 'react'
+import { Link } from 'react-router-dom'
 
-function ProductCard({ image, name , price, discount, brand }) {
-    let img = image[0];
-    // console.log(title);
+export default function ProductCard({ name, image, price, color_image, id, nots, discount }) {
+    const [state, setState] = useState(0)
+    const [boolean, setboolean] = useState(true)
+    const [colorEl, setcolorEl] = useState("not")
+    console.log(colorEl)
+
+    const HandleColorImage = (el) => {
+        setboolean(false)
+        setcolorEl(el)
+    }
     return (
-        <div className='cards' style={styles}>
-            <Flex h={400} alignItems="center" justifyContent="center">
-                <Box
-                    // border={"1px solid red"} 
-                    // bg={useColorModeValue('cyan.50', 'gray.800')}
-                    borderWidth="1px"
-                    rounded="lg"
-                    // shadow="lg"
-                    position="relative"
-                >
-                    <Image
-                        w={250}
-                        h={300}
-                        // border={"1px solid red"} 
-                        padding={"5px"}
-                        src={img}
-                        alt={"hello"}
-                        roundedTop="lg"
-                    />
+        <Container className='cards' style={styles} paddingLeft={"5px"} fontSize={"md"} fontFamily={"monospace"} cursor={"pointer"}>
+            <Box h={400} alignItems="center" justifyContent="center" borderWidth="1px" shadow="sm">
+                <Link to={`/productdetail/${id}/${colorEl}/${boolean}/${state}`}>
 
-                    <Box p="3" marginTop={0} 
-                    //  border={"1px solid red"}
-                    >
-                        <Flex mt="1" justifyContent="space-between" alignContent="center">
-                            {/* <Box
-                                fontSize="xl"
-                                fontWeight="500"
-                                as="h5"
-                                lineHeight="tight"
-                                isTruncated>
-                                {brand}
-                            </Box> */}
-                            {/* <Tooltip
-                                label="Add to cart"
-                                bg="cyan.50"
-                                placement={'top'}
-                                color={'gray.800'}
-                                fontSize={'1.2em'}>
-                                <chakra.a href={'#'} display={'flex'}>
-                                    <Icon as={FiShoppingCart} h={6} w={6} alignSelf={'center'} />
-                                </chakra.a>
-                            </Tooltip> */}
-                        </Flex>
+                    <Image  h={280} w={260} margin={"auto"} src={boolean ? image[state] : colorEl}
+                        onMouseOut={() => setState(0)}
 
-                        <Flex justifyContent="space-between" alignContent="center">
-                            <Box
-                                color={useColorModeValue('gray.600')}
-                                fontSize="15px"
-                                as="h4"
-                                lineHeight="tight"
-                                isTruncated>
-                                {name}
-                            </Box>
-                        </Flex>
-                        <Flex alignContent="center">
-                            <Box fontSize="15px"
-                                fontWeight="bold"
-                                as="h6"
-                                marginRight={"7px"}
-                                lineHeight="tight">
-                                ${price}
-                            </Box>
-                            <Box as="span" color={'red'} fontSize="13px">
-                                {` Up to (${discount} % OFF) `}
-                            </Box>
-                        </Flex>
+                        onMouseMoveCapture={() => (
+                            setState((prev) => {
+                                if (prev < image.length - 1) {
+                                    return prev + 1
+                                } else {
+                                    return prev - image.length + 1
+                                }
+                            }
+
+                            )
+                        )}
+
+                        onTouchMove={() => (
+                            setState((prev) => {
+                                if (prev < image.length - 1) {
+                                    return prev + 1
+                                } else {
+                                    return prev - image.length + 1
+                                }
+                            }
+
+                            )
+                        )}
+
+                        onTouchEnd={() => setState(0)}
+                        alt="prof" />
+                </Link>
+
+
+
+                <Box fontSize={"sm"} width={"98%"} margin={"auto"} mt={"10px"} justifyContent={"space-between"} display={"grid"} gridTemplateColumns={"repeat(2,1fr)"}>
+
+                    <Box fontSize={"sm"} width={"98%"} margin={"auto"} mt={"4px"} display={"inline-flex"} gap={"8px"}>
+
+                        {
+                            nots === undefined && color_image.map((el, i) => {
+                                return (
+                                    <Image h={"40px"} onClick={() => HandleColorImage(el)} borderInlineEndColor={"white"} _hover={{ border: "1px solid black" }} aria-selected={"true"} w={"30%"}
+                                        border={"3px solid whiite"}
+                                        src={el}></Image>
+                                )
+                            })
+
+                        }
                     </Box>
+                    {nots === undefined && <Box textAlign={"End"}>
+                        <Text mt={"0.6rem"} mr={"5px"}>
+                            {color_image.length} color
+                        </Text>
+                    </Box>
+                    }
                 </Box>
-            </Flex>
-        </div>
-    );
-}
+                <Text fontSize="15px" width={"98%"} margin={"auto"} mt={"13px"} noOfLines={"1"} textAlign={'start'} as={'h2'}>{name}</Text>
+                {nots === undefined &&
 
-export default ProductCard;
+                    <Flex alignContent="center">
+                        <Box fontSize="15px"
+                            fontWeight="bold"
+                            as="h6"
+                            color={"red"}
+                            marginRight={"7px"}
+                            lineHeight="tight">
+                            ${price}
+                        </Box>
+                        <Box as="span" color={'green'} fontWeight="500" fontSize="13px">
+                            {` Up to ${discount}% off `}
+                        </Box>
+                    </Flex>
+                }
+
+            </Box>
+        </Container>
+    )
+}
