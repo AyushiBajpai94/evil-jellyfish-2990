@@ -2,7 +2,8 @@ import { Button, Container, Input } from '@chakra-ui/react'
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { useLocation, useNavigate } from 'react-router-dom'
-import { AdminLoginNow } from '../AdminRedux/AdminActions';
+import { AdminLoginNow } from '../../Redux/AdminRedux/AdminActions';
+import {AdminDataNow} from '../../Redux/AdminRedux/AdminActions';
 
 export default function AdminLoginPage() {
   const location=useLocation();
@@ -15,24 +16,21 @@ export default function AdminLoginPage() {
   });
   const navi=useNavigate();
   const dispatch=useDispatch();
-  // console.log(location);
+  // console.log(adminAuth);
 
   
 
   function loginCheck(e){
     e.preventDefault();
-    dispatch(AdminLoginNow(loginData));
+    dispatch(AdminDataNow);
+    dispatch(AdminLoginNow(loginData)).then(()=>{
+      navi(`${location.state? location.state:'/dashboard'}`,{replace:true});
+    })
     setData({
       email:'',
       password:''
     })
   }
-  if(adminAuth){
-   navi(location.state);
-  }
-  useEffect(()=>{
-    
-  },[])
 
 
 
