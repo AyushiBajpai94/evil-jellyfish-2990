@@ -1,0 +1,2 @@
+export const GET_LOGIN_REQ ='GET_LOGIN_REQ'
+export const GET_LOGOUT_REQ='GET_LOGOUT_REQ';

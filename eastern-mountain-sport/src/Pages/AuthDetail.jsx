@@ -19,6 +19,8 @@ const AuthDetails = () => {
             listen();
         }
     },[]);
+// let name=authUser.email.slice(0,4)
+// console.log(name);
 
     const usersignOut=()=>{
         signOut(auth).then(()=>{
@@ -28,7 +30,7 @@ const AuthDetails = () => {
   return (
     <div>
         <h2>User Logged In</h2>
-      {authUser ? <><h1>{`SignedIn as ${authUser.email}`}</h1> <button onClick={usersignOut}>Sign Out</button></>:<h1>SignedOut</h1>}
+      {authUser ? <><h1>{`SignedIn as ${authUser.email.slice(0,4)}`}</h1> <button onClick={usersignOut}>Sign Out</button></>:<h1>SignedOut</h1>}
     </div>
   )
 }
