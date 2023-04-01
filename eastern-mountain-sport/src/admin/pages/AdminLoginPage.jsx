@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useLocation, useNavigate } from 'react-router-dom'
 import { AdminLoginNow } from '../../Redux/AdminRedux/AdminActions';
 import {AdminDataNow} from '../../Redux/AdminRedux/AdminActions';
-import logo from '../../Logo/AS-removebg-preview.png';
+import logo from '../../Components/AS-removebg-preview-2.png';
 
 export default function AdminLoginPage() {
   const location=useLocation();
