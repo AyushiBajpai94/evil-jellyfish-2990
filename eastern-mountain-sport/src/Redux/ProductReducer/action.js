@@ -24,7 +24,7 @@ export const getProductRequest = () => {
   
 
 //logic for getting the products
-export const getProduct = (dispatch) => {
+export const getProductMens  = (dispatch) => {
     dispatch(getProductRequest())
     axios.get("https://rich-plum-lamb-garb.cyclic.app/Mens").then((res) => {
         console.log(res.data);
@@ -34,3 +34,12 @@ export const getProduct = (dispatch) => {
     })
 }
 
+export const getProductWomens = (dispatch) => {
+  dispatch(getProductRequest())
+  axios.get("https://rich-plum-lamb-garb.cyclic.app/Womens").then((res) => {
+      console.log(res.data);
+      dispatch(getProductSuccess(res.data))
+  }).catch(() => {
+      dispatch(getProductFailure())
+  })
+}

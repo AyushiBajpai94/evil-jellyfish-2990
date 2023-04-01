@@ -14,11 +14,17 @@ import CartPage from './Pages/CartPage/CartPage';
 function App() {
   return (
     <div className="App">
+
+
+      <AdminRoutes/>
+     
+
       {/* <Homepage/> */}
       {/* <AdminRoutes/> */}
       
 
       <AdminRoutes/>
+
 
     </div>
   );
