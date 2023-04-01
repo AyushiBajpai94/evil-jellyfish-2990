@@ -13,6 +13,7 @@ function App() {
       {/* <AdminRoutes/> */}
       
 
+      <AdminRoutes/>
     </div>
   );
 }
