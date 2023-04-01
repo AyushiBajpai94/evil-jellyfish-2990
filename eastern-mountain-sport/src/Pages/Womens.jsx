@@ -6,17 +6,17 @@ import styles from "../Styles/Mens.css"
 import axios from 'axios';
 import Spiwer from "../Components/Swiper"
 
-const Mens = () => {
+const Womens = () => {
     const [DressesData2, setDress2] = useState([])
     useEffect(() => {
-        axios.get("https://rich-plum-lamb-garb.cyclic.app/Mens").then((res) => setDress2(res.data))
+        axios.get("https://rich-plum-lamb-garb.cyclic.app/Womens").then((res) => setDress2(res.data))
     }, [])
 
 
     return (
         <div style={styles}>
             <Box><a href='./'>Home</a></Box>
-            <Box id='title'>All Men</Box>
+            <Box id='title'>All Womens</Box>
             <Box id='mainbox'>
                 <Sidebar />
                 <Box id="secondbox">
@@ -55,4 +55,4 @@ const Mens = () => {
     );
 }
 
-export default Mens;
+export default Womens;

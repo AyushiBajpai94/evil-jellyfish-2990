@@ -3,15 +3,32 @@ import { useDispatch, useSelector } from "react-redux"
 import { useEffect } from "react"
 import styles from "../Styles/ProductList.css"
 import ProductCard from "./ProductCard"
-import {getProduct} from "../Redux/ProductReducer/action"
+import { getProductMens } from "../Redux/ProductReducer/action"
+import { getProductWomens } from "../Redux/ProductReducer/action"
+import { useSearchParams, useLocation } from "react-router-dom"
+
 
 const ProductList = () => {
+    const location = useLocation()
+    console.log(location);
+    const [searchParams] = useSearchParams()
     const dispatch = useDispatch()
     const product = useSelector((store) => store.productReducer.products)
     console.log(product);
 
+    let obj = {
+        params : {
+            brand : searchParams.getAll("brand")
+        }
+    }
+
     useEffect(() => {
-        getProduct(dispatch)
+        getProductMens(dispatch, obj)
+
+    }, []);
+
+    useEffect(() => {
+        getProductWomens(dispatch)
     }, []);
 
     return (

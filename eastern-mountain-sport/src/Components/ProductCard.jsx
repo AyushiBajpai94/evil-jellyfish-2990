@@ -2,12 +2,14 @@ import styles from "../Styles/ProductList.css"
 import { border, Box, Button, Container, Flex, HStack, Image, Text } from '@chakra-ui/react'
 import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
+import "../Styles/productpage.css"
 
 export default function ProductCard({ name, image, price, color_image, id, nots, discount }) {
+    // console.log(id);
     const [state, setState] = useState(0)
     const [boolean, setboolean] = useState(true)
     const [colorEl, setcolorEl] = useState("not")
-    console.log(colorEl)
+    // console.log(colorEl)
 
     const HandleColorImage = (el) => {
         setboolean(false)
@@ -15,7 +17,7 @@ export default function ProductCard({ name, image, price, color_image, id, nots,
     }
     return (
         <Container className='cards' style={styles} paddingLeft={"5px"} fontSize={"md"} fontFamily={"monospace"} cursor={"pointer"}>
-            <Box h={400} alignItems="center" justifyContent="center" borderWidth="1px" shadow="sm">
+            <Box h={400} background={"white"} alignItems="center" justifyContent="center" borderWidth="1px" shadow="sm">
                 <Link to={`/productdetail/${id}/${colorEl}/${boolean}/${state}`}>
 
                     <Image  h={280} w={260} margin={"auto"} src={boolean ? image[state] : colorEl}
