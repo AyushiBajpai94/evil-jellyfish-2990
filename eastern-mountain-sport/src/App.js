@@ -7,8 +7,8 @@ import Register from './Pages/RegisterPage';
 function App() {
   return (
     <div className="App">
-      <Homepage/>
-      {/* <AdminRoutes/> */}
+      {/* <Homepage/> */}
+      <AdminRoutes/>
     </div>
   );
 }
