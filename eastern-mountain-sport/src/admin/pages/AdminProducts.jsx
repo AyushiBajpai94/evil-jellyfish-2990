@@ -8,6 +8,7 @@ import ProductCard from '../components/ProductCard';
 export default function AdminProducts() {
     const[mainData,setMainData]=useState([]);
     const [reloadFlag,setReload]=useState(false);
+    let [searchTime,setSearchTime]=useState(undefined);
 
     function getDataApi(){
         const data=[];
@@ -30,6 +31,29 @@ export default function AdminProducts() {
         })
     }
 
+    function searchNow(val,delay=500){
+        clearTimeout(searchTime);
+        let content=val.toLowerCase();
+        setSearchTime(setTimeout(()=>{
+            // console.log(content);
+            const searchData=mainData.find((ele,index)=>{
+                if(ele.name.toLowerCase()===content){
+                    return ele;
+                }
+            })
+            // console.log(searchData)
+            if(searchData){
+                // console.log(searchData);
+                setMainData([searchData]);
+                // setReload(!reloadFlag);
+            }else{
+                getDataApi();
+            }
+        },delay))
+        // console.log(val);
+        // searchData.length>0? mainData([...searchData]):'';   
+    }
+
 
     useEffect(()=>{
         getDataApi();
@@ -42,7 +66,9 @@ export default function AdminProducts() {
     <div style={{marginTop:'100px'}}></div>
     <Box display={'flex'} flexDirection="column" w={'100%'}>
     <Box w='60%' m={'auto'} mb={'10'}>
-    <Input type={'search'} placeholder='Search Products'/>
+    <Input type={'search'} placeholder='Search Products' onChange={(e)=>{
+        searchNow(e.target.value);
+    }}/>
     <AddProduct Margin={'10px'}  setReload={setReload} reloadFlag={reloadFlag} setMainData={setMainData}/>
     </Box> 
     {mainData.length<=0? <div style={{textAlign:'center'}}>
