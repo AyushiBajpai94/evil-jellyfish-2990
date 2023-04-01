@@ -1,24 +1,9 @@
-import React, { useState } from 'react'
-import styled from 'styled-components'
+import React from 'react'
 
-const initState={
-   email:"",
-   firstname:"",
-   lastname:"",
-   country:"",
-   address:"",
-   city:"",
-   state:"",
-   zipcode:"",
-   phone:""
-} 
-
-function Checkout() {
-    const [address,setAddress]=useState(initState)
+function DeliveryAddress() {
     return (
-        <DIV >
+        <div>
             <div className='shipping-address'>
-
                 <form>
                     <h1>Shipping Address</h1>
                     <label>Email</label>
@@ -39,7 +24,7 @@ function Checkout() {
 
                     <label>Address</label>
                     <input type="text" placeholder='Addreess' />
-                    
+
                     <label>City</label>
                     <input type="text" placeholder='City' />
 
@@ -60,48 +45,8 @@ function Checkout() {
                     <button type='submit'>Continue to Shipping Method</button>
                 </form>
             </div>
-        </DIV>
+        </div>
     )
 }
 
-export default Checkout
-
-const DIV = styled.div`
-     width: 100%;
-     font-size: 18px;
-     
-    .shipping-address {
-        border: 1px solid red;
-        display: flex;
-        
-    }
-    .shipping-address form {
-        width: 50%;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        margin: auto;
-        padding: 20px;
-        border: 2px solid gray;
-        box-sizing: border-box;
-        gap: 10px;
-        background-color: #f8eeee;
-    }
-    .shipping-address form input {
-        border: 1px solid #ccc;
-        padding: 5px;
-    }
-    .shipping-address form select {
-        border: 1px solid #ccc;
-        padding: 5px;
-    }
-    .shipping-address form button {
-       background-color: #357229;
-       padding: 5px;
-       width: 50%;
-       display: flex;
-       justify-content: center;
-       margin: auto;
-       color: white;
-    }
-`
+export default DeliveryAddress

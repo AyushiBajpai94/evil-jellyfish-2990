@@ -1,9 +1,10 @@
-import { Button, Container, Input } from '@chakra-ui/react'
+import { Button, Container, HStack, Image, Input, VStack } from '@chakra-ui/react'
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { useLocation, useNavigate } from 'react-router-dom'
 import { AdminLoginNow } from '../../Redux/AdminRedux/AdminActions';
 import {AdminDataNow} from '../../Redux/AdminRedux/AdminActions';
+import logo from '../../Logo/AS-removebg-preview.png';
 
 export default function AdminLoginPage() {
   const location=useLocation();
@@ -35,16 +36,17 @@ export default function AdminLoginPage() {
 
 
   return (
-    <Container textAlign={'center'}>
-        <form onSubmit={loginCheck}>
-        <Input type={'text'} isRequired={true} value={loginData.email} onChange={(e)=>{
+    <VStack textAlign={'center'} >
+        <Image src={logo} alt='siteLogo'/>
+        <form onSubmit={loginCheck} style={{boxShadow: 'rgba(14, 30, 37, 0.12) 0px 2px 4px 0px, rgba(14, 30, 37, 0.32) 0px 2px 16px 0px',padding:'25px',borderRadius:'10px'}}>
+        <Input type={'text'} isRequired={true} value={loginData.email} mb={'10px'} placeholder='User' onChange={(e)=>{
           setData({...loginData,email:e.target.value});
         }}/>
-        <Input type={'password'} isRequired={true} value={loginData.password} onChange={(e)=>{
+        <Input type={'password'} isRequired={true} value={loginData.password} mb={'10px'} placeholder='Password' onChange={(e)=>{
           setData({...loginData,password:e.target.value});
         }}/>
         <Button type='submit'>Login</Button>
         </form>
-    </Container>
+    </VStack>
   )
 }
