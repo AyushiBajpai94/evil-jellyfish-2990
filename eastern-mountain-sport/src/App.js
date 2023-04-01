@@ -4,11 +4,18 @@ import Homepage from './Pages/HomePage';
 import Checkout from './Pages/CartPage/Checkout';
 import Login from './Pages/Login';
 import Register from './Pages/RegisterPage';
+import AuthDetails from './Pages/AuthDetail';
+import MainRoute from './Components/MainRoute';
+import Navbar from './Components/Navbar';
+import Footer from './Components/Footer';
 function App() {
   return (
     <div className="App">
-      <Homepage/>
-      {/* <AdminRoutes/> */}
+ 
+    
+      <AdminRoutes/>
+    
+     
     </div>
   );
 }

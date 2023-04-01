@@ -10,28 +10,38 @@ import {
     Heading,
     Text,
     useColorModeValue,
-    Link,
+    Link
+   
   } from '@chakra-ui/react';
+ import { Link as RouterLink } from 'react-router-dom';
   import { useState } from 'react';
   import { ViewIcon, ViewOffIcon } from '@chakra-ui/icons';
+  import { LoginUser } from '../Redux/LoginRedux/LoginAction';
 
 import { signInWithEmailAndPassword } from 'firebase/auth'
 import React from 'react'
 
 import { auth } from '../firebase'
+import { useDispatch, useSelector } from 'react-redux';
 
   
   export default function Login() {
     const [email,setEmail]=useState('')
     const [password,setPassword]=useState('')
-  
+    const {token,isAuth}=useSelector((state)=>state.LoginReducer)
+    const dispatch=useDispatch()
+  console.log(token)
+
+
     const handleSubmit=(e)=>{
       e.preventDefault();
       signInWithEmailAndPassword(auth,email,password)
       .then((userCredential)=>{
         console.log(userCredential)
+        dispatch(LoginUser(userCredential.user.email))
         alert("LoggedIn")
-      }).catch((err)=>console.log(err))
+      }).catch((err)=>console.log(err));
+      
     }
   
     return (
@@ -74,6 +84,7 @@ import { auth } from '../firebase'
                     bg: '#678a73',
                   }}>
                   LogIn
+               
                 </Button>
               </Stack>
               <Box style={{borderBottom:'1px solid black',borderTop:'1px solid black',padding:'6px',}}>
@@ -82,7 +93,7 @@ import { auth } from '../firebase'
              
               <Stack pt={6}>
                 <Text align={'center'}>
-                  New customer? <Link to={'/register'} color={'#4e6d58'} >Create your account</Link>
+                  New customer? <RouterLink to={'/register'} color={'#4e6d58'} >Create your account</RouterLink>
                 </Text>
               </Stack>
             </Stack>
@@ -93,36 +104,5 @@ import { auth } from '../firebase'
   }
 
 
-// import { signInWithEmailAndPassword } from 'firebase/auth'
-// import React from 'react'
-// import { useState } from 'react'
-// import { auth } from '../firebase'
-
-// const Login = () => {
-//   const [email,setEmail]=useState('')
-//   const [password,setPassword]=useState('')
-
-//   const handleSubmit=(e)=>{
-//     e.preventDefault();
-//     signInWithEmailAndPassword(auth,email,password)
-//     .then((userCredential)=>{
-//       console.log(userCredential)
-//     }).catch((err)=>console.log(err))
-//   }
-//   return (
-//     <div>
-//       <h1>Login</h1>
-//       <form onSubmit={handleSubmit}>
-//         <input type="email" placeholder='Enter email' value={email}
-//         onChange={(e)=>setEmail(e.target.value)} />
-//         <input type="password" placeholder='Enter password'
-//           value={password} onChange={(e)=>setPassword(e.target.value)}/>
-//           <button type='submit'>Log In</button>
-//       </form>
-//     </div>
-//   )
-// }
-
-// export default Login
 
 
