@@ -1,14 +1,19 @@
 import React from 'react'
 import Banner from "../CartPage/Banner.JPG"
 import styled from "styled-components"
-import { Link } from "react-router-dom"
+import Navbar from '../../Components/Navbar'
+import Footer from '../../Components/Footer'
+import { DeleteIcon} from '@chakra-ui/icons'
+// import { IconButton } from '@chakra-ui/react'
+
+
 
 const CartPage = () => {
   return (
     <DIV>
-      <h2>NAVBAR</h2>
+      <Navbar />
       <img src={Banner} alt="" />
-      <h2>Shopping Cart</h2>
+      <h1>Shopping Cart</h1>
       <div className='shopping-cart'>
         <div className='product'>
           <div className='product-image'>
@@ -27,8 +32,9 @@ const CartPage = () => {
                 <option value="">Quantity:1</option>
               </select>
             </div>
-            <div>
-              Delete Icon
+            <div style={{ border: "1px solid gray",padding:"10px" }}>
+             <DeleteIcon/>
+ 
             </div>
           </div>
           <div style={{ border: "2px solid gray", marginTop: "30px", textAlign: "center" }}>
@@ -37,6 +43,9 @@ const CartPage = () => {
           </div>
 
         </div>
+
+        {/* ordersummary */}
+
         <div className='order-summary'>
           <div>
             <h4>Order Summary</h4>
@@ -46,11 +55,20 @@ const CartPage = () => {
             <hr />
             <h5>Total - $20.00</h5>
             <button>Checkout</button>
-            <br /> <br /> 
+            <br /> <br />
             <hr />
-            <h4>Payments :</h4>
-            <h4>Shipping :</h4>
-            <h4>Returns :</h4>
+            <div style={{display:"flex",justifyContent:"space-between"}}>
+              <h4>Payments :</h4>
+              <div style={{display:"flex",flexDirection:"row",gap:"10px"}}>
+                <img src="https://www.ems.com/assets/1e17b54d.svg"alt="" />
+                <img src="https://www.ems.com/assets/6db70e0b.svg" alt=""  />
+                <img sr="https://www.ems.com/assets/8c29e6cf.svg" alt=""  />
+                <img src="https://www.ems.com/assets/e2ef118a.svg" alt="" />
+                <img src="https://www.ems.com/assets/4c78d0d1.svg" alt="" />
+              </div>
+            </div>
+            <h3>Shipping :</h3>
+            <h3>Returns :</h3>
           </div>
         </div>
       </div>
@@ -64,7 +82,7 @@ const CartPage = () => {
         </div>
       </div>
       <div>
-        <h1>Footer</h1>
+        <Footer />
       </div>
     </DIV>
   )
@@ -81,7 +99,7 @@ const DIV = styled.div`
       display: flex;
       flex-direction: row;
       justify-content: center;
-      gap: 20px;
+      gap: 30px;
    }
    .product-image {
       /* border: 1px solid red; */
@@ -103,6 +121,8 @@ const DIV = styled.div`
      width: 170px;
      height: 40px;
      font-size: medium;
+     border: 1px solid gray;
+
    }
    .order-summary {
      border: 2px solid gray;
@@ -121,6 +141,7 @@ const DIV = styled.div`
    }
    .recently-viwed-product {
       background-color: #f0ecec;
+      padding:30px
    }
    .recently-viwed-product-carousel{
        display: grid;
