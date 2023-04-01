@@ -1,3 +1,4 @@
+
 import {
     Flex,
     Box,
@@ -9,12 +10,39 @@ import {
     Heading,
     Text,
     useColorModeValue,
-    Link,
+    Link
+   
   } from '@chakra-ui/react';
+ import { Link as RouterLink } from 'react-router-dom';
   import { useState } from 'react';
   import { ViewIcon, ViewOffIcon } from '@chakra-ui/icons';
+  import { LoginUser } from '../Redux/LoginRedux/LoginAction';
+
+import { signInWithEmailAndPassword } from 'firebase/auth'
+import React from 'react'
+
+import { auth } from '../firebase'
+import { useDispatch, useSelector } from 'react-redux';
+
   
   export default function Login() {
+    const [email,setEmail]=useState('')
+    const [password,setPassword]=useState('')
+    const {token,isAuth}=useSelector((state)=>state.LoginReducer)
+    const dispatch=useDispatch()
+  console.log(token)
+
+
+    const handleSubmit=(e)=>{
+      e.preventDefault();
+      signInWithEmailAndPassword(auth,email,password)
+      .then((userCredential)=>{
+        console.log(userCredential)
+        dispatch(LoginUser(userCredential.user.email))
+        alert("LoggedIn")
+      }).catch((err)=>console.log(err));
+      
+    }
   
     return (
       <Flex
@@ -38,11 +66,11 @@ import {
              
               <FormControl id="email" isRequired>
                 <FormLabel>Email address</FormLabel>
-                <Input type="email" bgColor={'white'}/>
+                <Input type="email" bgColor={'white'}  onChange={(e)=>setEmail(e.target.value)}/>
               </FormControl>
               <FormControl id="password" isRequired>
                     <FormLabel>Password</FormLabel>
-                    <Input type="password" bgColor={'white'}/>
+                    <Input type="password" bgColor={'white'} onChange={(e)=>setPassword(e.target.value)}/>
             </FormControl>
               <Stack spacing={10} pt={2} >
                 <Button
@@ -50,12 +78,13 @@ import {
                   size="lg"
                   bg={'blue.400'}
                   color={'white'}
-                  
+                  onClick={handleSubmit}
                   bgColor='#4e6d58'
                   _hover={{
                     bg: '#678a73',
                   }}>
-                  Log in
+                  LogIn
+               
                 </Button>
               </Stack>
               <Box style={{borderBottom:'1px solid black',borderTop:'1px solid black',padding:'6px',}}>
@@ -64,7 +93,7 @@ import {
              
               <Stack pt={6}>
                 <Text align={'center'}>
-                  New customer? <Link color={'#4e6d58'}>Create your account</Link>
+                  New customer? <RouterLink to={'/register'} color={'#4e6d58'} >Create your account</RouterLink>
                 </Text>
               </Stack>
             </Stack>
@@ -73,3 +102,7 @@ import {
       </Flex>
     );
   }
+
+
+
+

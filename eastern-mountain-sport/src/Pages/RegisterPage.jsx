@@ -1,3 +1,4 @@
+
 import {
     Flex,
     Box,
@@ -5,35 +6,40 @@ import {
     FormLabel,
     Input,
     InputGroup,
-    HStack,
     InputRightElement,
     Stack,
     Button,
     Heading,
     Text,
     useColorModeValue,
-    Link,
   } from '@chakra-ui/react';
+  import { Link as RouterLink } from 'react-router-dom';
   import { useState } from 'react';
   import { ViewIcon, ViewOffIcon } from '@chakra-ui/icons';
+
+import { createUserWithEmailAndPassword } from 'firebase/auth'
+import React from 'react'
+
+import { auth } from '../firebase'
+import { useNavigate } from 'react-router-dom';
+
   
-  export default function RegisterPage() {
+  export default function Register() {
     const [showPassword, setShowPassword] = useState(false);
-    const [formData,setData]=useState({
-      firstName:'',
-      lastName:'',
-      email:'',
-      password:''
-    });
-     const handleChange=(e)=>{
-      setData({...formData,[e.target.name]:e.target.value})
-     };
-     const handleSubmit=(e)=>{
-      e.preventDefault()
-     console.log(formData)
-      
-      };
+
+    const [email,setEmail]=useState('')
+    const [password,setPassword]=useState('')
+    const navigate=useNavigate()
   
+    const handleRegister=(e)=>{
+      e.preventDefault();
+     createUserWithEmailAndPassword(auth,email,password)
+      .then((userCredential)=>{
+        console.log(userCredential)
+        alert("Account created")
+        navigate('/login')
+      }).catch((err)=>console.log(err))
+    }
     return (
       <Flex
         minH={'100vh'}
@@ -55,33 +61,17 @@ import {
             p={8}>
             
             <Stack spacing={4}>
-              <HStack>
-                <Box>
-                  <FormControl id="firstName" isRequired>
-                    <FormLabel>First Name</FormLabel>
-                    <Input type="text"  bgColor={'white'}  name='firstName' value={formData.firstName} onChange={handleChange}
-                     />
-                  </FormControl>
-                </Box>
-                <Box>
-                  <FormControl id="lastName" isRequired>
-                    <FormLabel>Last Name</FormLabel>
-                    <Input type="text" bgColor={'white'}  name='lastName' value={formData.lastName}  onChange={handleChange}
-                     />
-                  </FormControl>
-                </Box>
-              </HStack>
               <FormControl id="email" isRequired>
                 <FormLabel>Email address</FormLabel>
-                <Input type="email" bgColor={'white'}  name='email' value={formData.email} 
-                   onChange={handleChange}
+                <Input type="email" bgColor={'white'}  name='email' value={email} 
+                  onChange={(e)=>setEmail(e.target.value)}
                 />
               </FormControl>
               <FormControl id="password" isRequired>
                 <FormLabel>Password</FormLabel>
                 <InputGroup>
-                  <Input type={showPassword ? 'text' : 'password'} bgColor={'white'}  name='password' value={formData.password}
-                   onChange={handleChange}
+                  <Input type={showPassword ? 'text' : 'password'} bgColor={'white'}  name='password' value={password} 
+                   onChange={(e)=>setPassword(e.target.value)}
                   />
                   <InputRightElement h={'full'}>
                     <Button
@@ -95,7 +85,8 @@ import {
                 </InputGroup>
               </FormControl>
               <Stack spacing={10} pt={2}>
-                <Button onClick={handleSubmit}
+                
+                <Button onClick={handleRegister}
                   loadingText="Submitting"
                   size="lg"
                   bg={'blue.400'}
@@ -110,7 +101,7 @@ import {
               </Stack>
               <Stack pt={6}>
                 <Text align={'center'}>
-                  Already a user? <Link color={'blue.400'}>Login</Link>
+                  Already a user? <RouterLink to={'/login'} color={'green.400'}>Login</RouterLink>
                 </Text>
               </Stack>
             </Stack>
@@ -119,3 +110,6 @@ import {
       </Flex>
     );
   }
+
+
+

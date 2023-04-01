@@ -7,14 +7,18 @@ import { ChakraProvider } from '@chakra-ui/react';
 import { BrowserRouter } from 'react-router-dom';
 import {Provider} from "react-redux"
 import { store } from './Redux/store';
-// import { Provider } from 'react-redux';
+
+
+
 
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <BrowserRouter>
   <Provider store={store}> 
-  <ChakraProvider>
+
+  <ChakraProvider>  
+
     <App />
   </ChakraProvider>
   </Provider>
@@ -26,3 +30,8 @@ root.render(
 // to log results (for example: reportWebVitals(console.log))
 // or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
 reportWebVitals();
+
+
+// {/* <Provider store={AdminStore}> */}
+// <App />
+// {/* </Provider> */}
