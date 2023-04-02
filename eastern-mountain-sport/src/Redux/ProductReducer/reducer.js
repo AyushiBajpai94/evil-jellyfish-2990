@@ -22,7 +22,7 @@ export const reducer = (state = initialState, { type, payload }) => {
         case PRODUCT_FAILURE:
             return { ...state, isLoading: false, isError: true }
         case POST_TO_CART:
-            return { ...state, CartPage: [payload] }
+            return { ...state, Cart: [...state.Cart, payload] }
         default: return state;
     }
 }

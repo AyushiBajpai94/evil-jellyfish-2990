@@ -11,6 +11,8 @@ import { useDispatch } from 'react-redux'
 import "../Styles/productpage.css"
 import "../Styles/productstyle.css"
 import Spiwer from "../Components/Swiper"
+import Navbar from '../Components/Navbar'
+import Footer from '../Components/Footer'
 
 
 export default function ProductDetail() {
@@ -37,6 +39,7 @@ export default function ProductDetail() {
 
   return (
     <>
+    <Navbar/>
       <div className='Parent_Box'>
         <div className='Child1'>
 
@@ -150,6 +153,7 @@ export default function ProductDetail() {
       <Box mt={"3rem"}>
         <Spiwer products={DressesData2} v1={3} v2={4} v3={2} v4={1} v5={2} />
       </Box>
+      <Footer/>
     </>
 
   )
