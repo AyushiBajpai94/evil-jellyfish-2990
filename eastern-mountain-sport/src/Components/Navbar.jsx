@@ -10,7 +10,7 @@ import { Link } from "react-router-dom";
 function Navbar(){
 
 
-
+    
 
     return(
             <>
@@ -42,7 +42,7 @@ function Navbar(){
                 <ul class="menu-main">
                    
                     <li class="menu-item-has-children">
-                        <a href="/">MEN</a>
+                        <Link to={"/mens"}>MEN</Link>
                         <div class="sub-menu mega-menu mega-menu-column-4">
                             <div class="list-item">
                                 <h4 class="title">JACKETS</h4>
@@ -115,7 +115,7 @@ function Navbar(){
                     </li>
                     
                     <li class="menu-item-has-children">
-                        <a href="/">WOMEN</a>
+                    <Link to={"/womens"}>WOMEN</Link>
                         <div class="sub-menu mega-menu mega-menu-column-4">
                             <div class="list-item">
                                 <h4 class="title">JACKETS</h4>

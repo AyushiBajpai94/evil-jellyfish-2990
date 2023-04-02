@@ -15,7 +15,7 @@ const Mens = () => {
 
     return (
         <div style={styles}>
-            <Box><a href='./'>Home</a></Box>
+            <Box textAlign={"center"} mt={"10px"} fontSize={"18px"}><a href='./'>Home</a></Box>
             <Box id='title'>All Men</Box>
             <Box id='mainbox'>
                 <Sidebar />

@@ -3,14 +3,23 @@ import axios from 'axios'
 import { color } from 'framer-motion'
 import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
+import { postToCart } from "../Redux/ProductReducer/action"
 import { useDispatch } from 'react-redux'
+// import GameShower from './GameShower'
+// import ProductCard from './ProductCard'
+// import ProductPage from './ProductPage'
+import "../Styles/productpage.css"
+import "../Styles/productstyle.css"
 import Spiwer from "../Components/Swiper"
+
+
 export default function ProductDetail() {
   const dispatch = useDispatch()
   const [data, setdata] = useState({})
   const { boolean, id, colorEl, state } = useParams()
-  console.log(boolean, id, colorEl, state)
+  // console.log(boolean, id, colorEl, state)
   const [DressesData2, setDress2] = useState([])
+ 
 
   useEffect(() => {
     axios.get("https://rich-plum-lamb-garb.cyclic.app/Mens").then((res) => setDress2(res.data))
@@ -20,15 +29,17 @@ export default function ProductDetail() {
     axios.get(`https://rich-plum-lamb-garb.cyclic.app/Mens/${id}`).then((res) => setdata(res.data))
   }, [])
 
-  console.log(data)
-  console.log(data.image, state)
+  // console.log(data)
+  // console.log(data.image, state)
   const [pic, setPic] = useState("")
   let arr = Array(10).fill(0)
   let Fit = ["Standard", "Petite", 'plus']
+
   return (
     <>
       <div className='Parent_Box'>
         <div className='Child1'>
+
           <div >
             {
               data.image && data.image.map((el) => (
@@ -48,6 +59,10 @@ export default function ProductDetail() {
           <Box w={{ base: "78%", sm: "100%%", lg: "75%", md: "75%", xl: "65%" }}>
             <Flex gap={"9px"} direction={"column"} justifyContent={"start"}>
               <h2 style={{ fontSize: "22px", fontWeight: "400px" }}>{data.name}</h2>
+              <Text style={{ color: "#23395d" }} textDecoration={"underline"}>Maeve</Text>
+              <Image width={"15%"} src='https://upload.wikimedia.org/wikipedia/commons/thumb/e/eb/Star_rating_3.5_of_5.png/800px-Star_rating_3.5_of_5.png?20160511144412' alt='prof' />
+              <p style={{ fontSize: "10px" }}>Or 4 interest-free installments of $20.00 with Klarna orAfterpay
+              </p>
               <Box mt={"0.5rem"}>
                 <hr />
               </Box>
@@ -97,7 +112,7 @@ export default function ProductDetail() {
                 <option value="">5</option>
               </select>
             </Flex>
-            <Button padding={{ base: "2px", sm: "7px" }} color={"white"} backgroundColor={"#536872"} ml={{ base: "1rem", lg: "1rem", sm: "2rem" }} borderRadius={"0px"} w={{ base: "80%", sm: "90%", md: "80%", lg: "70%", xl: "70%" }} fontSize={"sm"} fontWeight={"md"} mt={"1rem"}>
+            <Button onClick={() => dispatch(postToCart(data))} padding={{ base: "2px", sm: "7px" }} color={"white"} backgroundColor={"#536872"} ml={{ base: "1rem", lg: "1rem", sm: "2rem" }} borderRadius={"0px"} w={{ base: "80%", sm: "90%", md: "80%", lg: "70%", xl: "70%" }} fontSize={"sm"} fontWeight={"md"} mt={"1rem"}>
 
               ADD TO BASKET
             </Button>
