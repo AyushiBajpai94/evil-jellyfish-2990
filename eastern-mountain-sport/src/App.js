@@ -1,10 +1,6 @@
 import AdminRoutes from './admin/pages/AdminRoutes';
 import './App.css';
-
 import { AllRoutes } from './Pages/AllRoutes';
-
-
-
 
 
 function App() {
