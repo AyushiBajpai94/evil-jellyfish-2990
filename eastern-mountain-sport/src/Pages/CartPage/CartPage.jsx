@@ -1,48 +1,96 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import Banner from "../CartPage/Banner.JPG"
 import styled from "styled-components"
 import Navbar from '../../Components/Navbar'
 import Footer from '../../Components/Footer'
-import { DeleteIcon} from '@chakra-ui/icons'
+import { DeleteIcon } from '@chakra-ui/icons'
+import axios from "axios"
+import { Link } from 'react-router-dom'
 // import { IconButton } from '@chakra-ui/react'
 
 
 
 const CartPage = () => {
+  const [cartItems, setCartItems] = useState([]);
+
+  useEffect(() => {
+    axios.get("https://rich-plum-lamb-garb.cyclic.app/Cart").then((response) => {
+      setCartItems(response.data);
+    });
+  }, []);
+
+  console.log("cartItems", cartItems);
+
+
+  const renderCartItems = () => {
+    return cartItems.map((item) => (
+      <div key={item.id} className='single-product'>
+        <div className='product-image'>
+          <div>
+            <img src={item.image[0]} alt="" />
+          </div>
+          <div>
+            <h2>{item.name}</h2>
+            <p>Brand name : INDIAN TEAL, S</p>
+            <p>Price : ${item.price}</p>
+          </div>
+        </div>
+
+        <div className='quantity-change'>
+          <div className='quantity-button'>
+            <button onClick={() => handleQuantityChange(item.id, "-")}>-</button>
+            <p> Quantity : {item.quantity}</p>
+            <button onClick={() => handleQuantityChange(item.id, "+")}>+</button>
+          </div>
+          <div>
+            <button>Delete</button>
+          </div>
+        </div>
+      </div>
+    ));
+  };
+
+  const handleQuantityChange = (productId, operation) => {
+    const productIndex = cartItems.findIndex((p) => p.id === productId);
+    const product = cartItems[productIndex];
+
+    // Update the quantity based on the operation
+    let newQuantity;
+    if (operation === "+") {
+      newQuantity = product.quantity + 1;
+    } else if (operation === "-" && product.quantity > 1) {
+      newQuantity = product.quantity - 1;
+    } else {
+      // Do nothing if the quantity is already at 1 and the user tries to decrease it further
+      return;
+    }
+
+    // Create a new copy of the cart with the updated quantity
+    const newCart = [...cartItems];
+    newCart[productIndex] = { ...product, quantity: newQuantity };
+
+    // Update the state with the new cart
+    setCartItems(newCart);
+  };
+
+  // const handleDeleteItem = (itemIndex, itemId) => {
+  //   const newCartItems = [...cartItems];
+  //   newCartItems.splice(itemIndex, 1);
+  //   setCartItems(newCartItems);
+  //   axios.delete(`https://bored-plum-sparrow.cyclic.app/users/${itemId}`);
+  // }
+
   return (
     <DIV>
       <Navbar />
       <img src={Banner} alt="" />
       <h1>Shopping Cart</h1>
       <div className='shopping-cart'>
+        {/* single product */}
         <div className='product'>
-          <div className='product-image'>
-            <div>
-              <img src="https://res.cloudinary.com/eastern/image/upload/w_1000,q_auto,f_auto/2079373_409_main.jpg" alt="" />
-            </div>
-            <div>
-              <h4>Product name  Eastern Mountain Sports.</h4>
-              <p>Brand name</p>
-              <p>Price : $20.00</p>
-            </div>
-          </div>
-          <div className='select-delete'>
-            <div>
-              <select name="">
-                <option value="">Quantity:1</option>
-              </select>
-            </div>
-            <div style={{ border: "1px solid gray",padding:"10px" }}>
-             <DeleteIcon/>
- 
-            </div>
-          </div>
-          <div style={{ border: "2px solid gray", marginTop: "30px", textAlign: "center" }}>
-            {/* <Link>Spend $79.03 more to get Free Ground Shipping</Link> */}
-            <p>Spend $79.03 more to get Free Ground Shipping</p>
-          </div>
-
+          {renderCartItems()}
         </div>
+        {/* single product end here  */}
 
         {/* ordersummary */}
 
@@ -54,21 +102,21 @@ const CartPage = () => {
             <p>Subtotal - </p>
             <hr />
             <h5>Total - $20.00</h5>
-            <button>Checkout</button>
+            <Link to="/cart/checkout"> <button>Checkout</button></Link>
             <br /> <br />
             <hr />
-            <div style={{display:"flex",justifyContent:"space-between"}}>
+            <div style={{ display: "flex", justifyContent: "space-between" }}>
               <h4>Payments :</h4>
-              <div style={{display:"flex",flexDirection:"row",gap:"10px"}}>
-                <img src="https://www.ems.com/assets/1e17b54d.svg"alt="" />
-                <img src="https://www.ems.com/assets/6db70e0b.svg" alt=""  />
-                <img sr="https://www.ems.com/assets/8c29e6cf.svg" alt=""  />
+              <div style={{ display: "flex", flexDirection: "row", gap: "10px" }}>
+                <img src="https://www.ems.com/assets/1e17b54d.svg" alt="" />
+                <img src="https://www.ems.com/assets/6db70e0b.svg" alt="" />
+                <img sr="https://www.ems.com/assets/8c29e6cf.svg" alt="" />
                 <img src="https://www.ems.com/assets/e2ef118a.svg" alt="" />
                 <img src="https://www.ems.com/assets/4c78d0d1.svg" alt="" />
               </div>
             </div>
-            <h3>Shipping :</h3>
-            <h3>Returns :</h3>
+            <h3>Shipping : from $7.99 - Free when you spend</h3>
+            <h3>Returns : Easy Returns</h3>
           </div>
         </div>
       </div>
@@ -91,7 +139,7 @@ const CartPage = () => {
 export default CartPage
 
 const DIV = styled.div`
-   border: 1px solid green;
+   /* border: 1px solid green; */
    
    .shopping-cart{
       /* border: 1px solid teal; */
@@ -101,33 +149,62 @@ const DIV = styled.div`
       justify-content: center;
       gap: 30px;
    }
-   .product-image {
+   .product {
       /* border: 1px solid red; */
+      width:500px;
+   }
+   .single-product {
+     /* border: 1px solid green */
+
+     
+   }
+   .product-image {
+      /* border: 1px solid yellow; */
       display: flex;
       flex-direction: row; 
+      justify-content:space-around
    }
    .product-image img {
-      width: 100px;
-      height: 100px;
+      width: 200px;
+      height: 200px;
       padding: 10px;
+      border: 1px solid gray;
    }
-   .select-delete {
+   .quantity-change {
      /* border: 1px solid teal; */
      display: flex;
      flex-direction: row;
-     justify-content: space-between;
+     justify-content: space-around;
+     margin-top:10px
+    
    }
-   .select-delete select {
-     width: 170px;
-     height: 40px;
+   .quantity-button {
+    /* border: 1px solid teal; */
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width:200px
+   }
+   .quantity-button button {
+     /* display: flex;
+     flex-direction: row; */
+     width: 50px;
+     height: auto;
      font-size: medium;
      border: 1px solid gray;
-
+     background-color: #4e8f42;
+     color: white;
+     transition: background-color 0.3s ease;
+     align-items:center
+     &:hover {
+      background-color: #3acc7b;
+      }
+     
    }
    .order-summary {
      border: 2px solid gray;
-     width: 350px;
-     height: auto;
+     width: 400px;
+     height: 400px;
      padding: 20px;
      background-color: #ecdcdc;
    }
@@ -151,6 +228,7 @@ const DIV = styled.div`
        align-items: center;
        /* padding: 30px; */
        width: 70%;
+      
 
    }
    .recently-viwed-product-carousel img {
@@ -159,3 +237,63 @@ const DIV = styled.div`
        border: 1px solid gray;
    }
 `
+
+// import React, { useState } from "react";
+
+// const CartPage = () => {
+//   const [cartItems, setCartItems] = useState([]);
+
+//   const addToCart = (item) => {
+//     setCartItems([...cartItems, item]);
+//   };
+
+//   const removeItem = (id) => {
+//     setCartItems(cartItems.filter((item) => item.id !== id));
+//   };
+
+//   const renderCartItems = () => {
+//     return cartItems.map((item) => (
+//       <div key={item.id}>
+//         <div>{item.title}</div>
+//         <img src={item.image} alt={item.title} />
+//         <div>Quantity: {item.quantity}</div>
+//         <button onClick={() => removeItem(item.id)}>Remove</button>
+//       </div>
+//     ));
+//   };
+
+//   const renderTotalPrice = () => {
+//     const totalPrice = cartItems.reduce(
+//       (total, item) => total + item.price * item.quantity,
+//       0
+//     );
+//     return <div>Total Price: {totalPrice}</div>;
+//   };
+
+//   return (
+//     <div>
+//       <h1>Cart Page</h1>
+//       {cartItems.length > 0 ? (
+//         <div>
+//           {renderCartItems()}
+//           {renderTotalPrice()}
+//         </div>
+//       ) : (
+//         <div>Your cart is empty</div>
+//       )}
+//     </div>
+//   );
+// };
+
+
+
+  // const renderCartItems = () => {
+  //   return cartItems.map((item) => (
+  //     <div key={item.id}>
+  //       <div>{item.title}</div>
+  //       <img src={item.image} alt={item.title} />
+  //       <div>Quantity: {item.quantity}</div>
+  //       <button onClick={() => handleDeleteItem(item.id)}>Remove</button>
+  //     </div>
+  //   ));
+  // };

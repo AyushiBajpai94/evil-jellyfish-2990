@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
+import ProductSuccessAlert from './ProductSuccessAlert';
 
 function PaymentForm() {
-  const [cardNumber, setCardNumber] = useState('');
-  const [cardName, setCardName] = useState('');
-  const [cardExpiry, setCardExpiry] = useState('');
-  const [cardCVC, setCardCVC] = useState('');
+  const [cardNumber, setCardNumber] = useState('1234');
+  const [cardName, setCardName] = useState('Vinod Hadmode');
+  const [cardExpiry, setCardExpiry] = useState('2024');
+  const [cardCVC, setCardCVC] = useState('375');
 
   const handleCardNumberChange = (event) => {
     setCardNumber(event.target.value);
@@ -23,9 +24,19 @@ function PaymentForm() {
     setCardCVC(event.target.value);
   };
 
+  function myFunction() {
+    alert("I am an alert box!");
+  }
+
+  const handleSubmit = (e) => {
+    e.preventDefault()
+    myFunction()
+  }
   return (
     <div>
+
       <Form action="">
+        <h1>Payment Method</h1> <br />
         <label htmlFor="cardNumber">Card Number</label>
         <input
           type="text"
@@ -58,7 +69,7 @@ function PaymentForm() {
           onChange={handleCardCVCChange}
         />
 
-        <button type="submit">Pay Now</button>
+        <ProductSuccessAlert />
       </Form>
     </div>
   );
@@ -69,7 +80,7 @@ export default PaymentForm;
 const Form = styled.form`
   display: flex;
   flex-direction: column;
-  align-items: center;
+  /* align-items: center; */
   padding: 20px;
   background-color:  #f8eeee;
   /* box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); */

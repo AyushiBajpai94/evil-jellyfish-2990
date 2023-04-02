@@ -5,21 +5,16 @@ import Footer from '../../Components/Footer'
 import DeliveryAddress from './Components/DeliveryAddress'
 import PaymentMetod from './Components/PaymentForm'
 import PaymentForm from './Components/PaymentForm'
-
-const initState={
-   email:"",
-   firstname:"",
-   lastname:"",
-   country:"",
-   address:"",
-   city:"",
-   state:"",
-   zipcode:"",
-   phone:""
-} 
+import { useSelector } from 'react-redux'
+import { Navigate } from 'react-router-dom'
 
 function Checkout() {
-    const [address,setAddress]=useState(initState)
+    const {isAuth}=useSelector((store)=>store.LoginReducer)
+
+    if(!isAuth){
+        return <Navigate to="/login"/>
+    }
+    
     return (
         <DIV >
             <Navbar/>
