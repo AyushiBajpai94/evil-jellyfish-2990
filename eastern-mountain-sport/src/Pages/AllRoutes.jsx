@@ -3,7 +3,7 @@ import Login from "./Login"
 import Homepage from "./HomePage"
 import Mens from "./Mens"
 import CartPage from "./CartPage/CartPage"
-import Checkout from "./CartPage/Checkout"
+import Checkout from "./CheckoutPage/Checkout"
 
 export const AllRoutes = () =>{
     return (
