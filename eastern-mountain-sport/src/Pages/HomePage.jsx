@@ -25,11 +25,11 @@ return ( <>
          <Box>
             <VStack>
                 <Box>
-           <Flex width={"1000px"} marginTop={"40px"} align="center" justify="center"> <Image src="https://media.graphassets.com/WnG8r2YZSkKrxCW6ZiEv?format=pjpg&auto=webp" alt="poster1"/> 
+           <Flex width={"1000px"} marginTop={"40px"} marginBottom={"100px"} align="center" justify="center"> <Image src="https://media.graphassets.com/WnG8r2YZSkKrxCW6ZiEv?format=pjpg&auto=webp" alt="poster1"/> 
         </Flex>
                </Box>  
              
-           <Grid marginTop={"60px"} templateColumns='repeat(3, 1fr)'  width={"82%"}>
+           <Grid marginTop={"50px"} templateColumns='repeat(3, 1fr)'  width={"82%"}>
       <Center>         
   <GridItem  w='80%' ><Image src="https://media.graphassets.com/4wmPq1KWS5aGIZQa4Afn?format=pjpg&auto=webp"/></GridItem > 
      </Center>
@@ -81,31 +81,31 @@ return ( <>
     <Box>
         <Image src="https://media.graphassets.com/fVtKkpNdSrG72LqcNBqk?format=pjpg&auto=webp"/>
     </Box>
-    <Grid  templateColumns='repeat(5, 1fr)'  width={"82%"}>
+    <Grid  templateColumns='repeat(5, 1fr)'  width={"82%"} >
       <Center>         
-  <GridItem  w='80%' ><Image src="https://media.graphassets.com/u8W6tfTuSvrmnj4IPxiA?format=pjpg&auto=webp"/></GridItem > 
+  <GridItem  w='80%' ><Image marginTop={"40px"} src="https://media.graphassets.com/u8W6tfTuSvrmnj4IPxiA?format=pjpg&auto=webp"/></GridItem > 
      </Center>
      <Center>      
-  <GridItem  w='80%'   ><Image src="https://media.graphassets.com/QdkSpBWcQoSlt819IUB6?format=pjpg&auto=webp"/></GridItem >
+  <GridItem  w='80%'   ><Image marginTop={"40px"} src="https://media.graphassets.com/QdkSpBWcQoSlt819IUB6?format=pjpg&auto=webp"/></GridItem >
      </Center>
      <Center>      
-  <GridItem  w='80%'   ><Image src="https://media.graphassets.com/AEr0LC1S6O1ILKay2MR3?format=pjpg&auto=webp"/></GridItem >
+  <GridItem  w='80%'   ><Image marginTop={"40px"} src="https://media.graphassets.com/AEr0LC1S6O1ILKay2MR3?format=pjpg&auto=webp"/></GridItem >
      </Center>
      <Center>      
-  <GridItem  w='80%'   ><Image src="https://media.graphassets.com/W8RkqVRQaC9iNDrC52jc?format=pjpg&auto=webp"/></GridItem >
+  <GridItem  w='80%'   ><Image marginTop={"40px"} src="https://media.graphassets.com/W8RkqVRQaC9iNDrC52jc?format=pjpg&auto=webp"/></GridItem >
      </Center>
      <Center>      
-  <GridItem  w='80%'   ><Image src="https://media.graphassets.com/7tIYcTrjTm2WQqi8IPa5?format=pjpg&auto=webp"/></GridItem >
+  <GridItem  w='80%'   ><Image marginTop={"40px"} src="https://media.graphassets.com/7tIYcTrjTm2WQqi8IPa5?format=pjpg&auto=webp"/></GridItem >
      </Center>
 </Grid> 
 
      <Box >
-        <Image src="https://media.graphassets.com/HnAuOno3SNWUOpDvNgXB?format=pjpg&auto=webp" />
+        <Image marginTop={"-5rem"} src="https://media.graphassets.com/HnAuOno3SNWUOpDvNgXB?format=pjpg&auto=webp" />
     </Box> 
     
     <Grid  templateColumns='repeat(4, 1fr)'  width={"82%"}>
       <Center>         
-  <GridItem  w='80%' ><Image src="https://media.graphassets.com/JtdemCYvTQ6eOkoE6Zvg?format=pjpg&auto=webp"/></GridItem > 
+  <GridItem  w='80%' ><Image  src="https://media.graphassets.com/JtdemCYvTQ6eOkoE6Zvg?format=pjpg&auto=webp"/></GridItem > 
      </Center>
      <Center>      
   <GridItem  w='80%'   ><Image src="https://media.graphassets.com/c5KaUulROWvSANwQFcGi?format=pjpg&auto=webp"/></GridItem >
@@ -131,12 +131,12 @@ return ( <>
 </Grid> 
 
     <Box >
-        <Image src="https://media.graphassets.com/hFXaO30RkGwA17dQxFjR?format=pjpg&auto=webp" />
+        <Image marginTop={"10px"} src="https://media.graphassets.com/hFXaO30RkGwA17dQxFjR?format=pjpg&auto=webp" />
     </Box> 
 
     <Grid  templateColumns='repeat(4, 1fr)'  width={"82%"}>
       <Center>         
-  <GridItem  w='80%' ><Image src="https://media.graphassets.com/tgBebAnStKzYuNpeLqvy?format=pjpg&auto=webp"/></GridItem > 
+  <GridItem  w='80%' ><Image  src="https://media.graphassets.com/tgBebAnStKzYuNpeLqvy?format=pjpg&auto=webp"/></GridItem > 
      </Center>
      <Center>      
   <GridItem  w='80%'   ><Image src="https://media.graphassets.com/CLKwDIQ7R9uNgaPDSm5K?format=pjpg&auto=webp"/></GridItem >
@@ -163,7 +163,7 @@ return ( <>
 
     <Box >  
         <Center>
-        <Image src="https://media.graphassets.com/COuVGSrzQ3sY6FyWjXgW?format=pjpg&auto=webp" maxW="82%"/>
+        <Image marginTop={"100px"} marginBottom={"150px"} src="https://media.graphassets.com/COuVGSrzQ3sY6FyWjXgW?format=pjpg&auto=webp" maxW="82%"/>
         </Center>
     </Box>
      
@@ -182,23 +182,23 @@ return ( <>
   <GridItem  w='80%'   ><Image src="https://media.graphassets.com/E1K6i5XHS5GrfFFbz0yA?format=pjpg&auto=webp"/></GridItem >
      </Center>
      <Center>      
-  <GridItem  w='80%'   ><Image src="https://media.graphassets.com/bYQGFeFRfuF8iTDWeQO1?format=pjpg&auto=webp"/></GridItem >
+  <GridItem  w='80%'   ><Image marginBottom={"150px"} src="https://media.graphassets.com/bYQGFeFRfuF8iTDWeQO1?format=pjpg&auto=webp"/></GridItem >
      </Center>
      <Center>      
-  <GridItem  w='80%'   ><Image src="https://media.graphassets.com/J2VTEUSOKRFbjXUik1og?format=pjpg&auto=webp"/></GridItem >
+  <GridItem  w='80%'   ><Image marginBottom={"150px"} src="https://media.graphassets.com/J2VTEUSOKRFbjXUik1og?format=pjpg&auto=webp"/></GridItem >
      </Center>
      <Center>      
-  <GridItem  w='80%'   ><Image src="https://media.graphassets.com/SJYzHVhbSJa7kld1z3rP?format=pjpg&auto=webp"/></GridItem >
+  <GridItem  w='80%'   ><Image marginBottom={"150px"} src="https://media.graphassets.com/SJYzHVhbSJa7kld1z3rP?format=pjpg&auto=webp"/></GridItem >
      </Center>
      <Center>      
-  <GridItem  w='80%'   ><Image src="https://media.graphassets.com/WJHekGRDTm2Rcd9PGVAI?format=pjpg&auto=webp"/></GridItem >
+  <GridItem  w='80%'   ><Image marginBottom={"150px"} src="https://media.graphassets.com/WJHekGRDTm2Rcd9PGVAI?format=pjpg&auto=webp"/></GridItem >
      </Center>
 </Grid> 
 
 
       {/* this grid is for product logo */}
     
-      <Grid  templateColumns='repeat(5, 1fr)' width={"82%"} maxH="300px">
+      <Grid marginTop={"100px"} templateColumns='repeat(5, 1fr)' width={"82%"} maxH="300px">
       <Center>         
   <GridItem  w='80%' ><Image src="https://media.graphassets.com/e6KAdK1QaK4pII4vgEoB?format=pjpg&auto=webp"/></GridItem > 
      </Center>
@@ -215,19 +215,19 @@ return ( <>
   <GridItem  w='80%'   ><Image src="https://media.graphassets.com/biFpMMcTkuHZyuPrlxFK?format=pjpg&auto=webp"/></GridItem >
      </Center>
      <Center>      
-  <GridItem  w='80%'   ><Image src="https://media.graphassets.com/Z5MqM8ySqyJHzA4xqAqg?format=pjpg&auto=webp"/></GridItem >
+  <GridItem  w='80%'   ><Image marginBottom={"180px"} src="https://media.graphassets.com/Z5MqM8ySqyJHzA4xqAqg?format=pjpg&auto=webp"/></GridItem >
      </Center>
      <Center>      
-  <GridItem  w='80%'   ><Image src="https://media.graphassets.com/BxJnkrhDSp6UdZsh0Qkm?format=pjpg&auto=webp"/></GridItem >
+  <GridItem  w='80%'   ><Image marginBottom={"180px"} src="https://media.graphassets.com/BxJnkrhDSp6UdZsh0Qkm?format=pjpg&auto=webp"/></GridItem >
      </Center>
      <Center>      
-  <GridItem  w='80%'   ><Image src="https://media.graphassets.com/4wMA8EDTb6EvVqExDbGm?format=pjpg&auto=webp"/></GridItem >
+  <GridItem  w='80%'   ><Image marginBottom={"180px"} src="https://media.graphassets.com/4wMA8EDTb6EvVqExDbGm?format=pjpg&auto=webp"/></GridItem >
      </Center>
      <Center>      
-  <GridItem  w='80%'   ><Image src="https://media.graphassets.com/ZhYi4jB6TZyzJmADVHwL?format=pjpg&auto=webp"/></GridItem >
+  <GridItem  w='80%'   ><Image marginBottom={"180px"} src="https://media.graphassets.com/ZhYi4jB6TZyzJmADVHwL?format=pjpg&auto=webp"/></GridItem >
      </Center>
      <Center>      
-  <GridItem  w='80%'   ><Image src="https://media.graphassets.com/eSy612wiTs2nm4xHmIV4?format=pjpg&auto=webp"/></GridItem >
+  <GridItem  w='80%'   ><Image marginBottom={"180px"} src="https://media.graphassets.com/eSy612wiTs2nm4xHmIV4?format=pjpg&auto=webp"/></GridItem >
      </Center>
 </Grid> 
 

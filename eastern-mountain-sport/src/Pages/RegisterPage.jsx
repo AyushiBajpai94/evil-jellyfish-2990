@@ -22,6 +22,8 @@ import React from 'react'
 
 import { auth } from '../firebase'
 import { useNavigate } from 'react-router-dom';
+import Navbar from '../Components/Navbar';
+import Footer from '../Components/Footer';
 
   
   export default function Register() {
@@ -41,9 +43,11 @@ import { useNavigate } from 'react-router-dom';
       }).catch((err)=>console.log(err))
     }
     return (
+      <>
+      <Navbar />
       <Flex
         minH={'100vh'}
-        align={'center'}
+        // align={'center'}
         justify={'center'}
         bg={useColorModeValue('gray.50', 'gray.800')}>
         <Stack spacing={8} mx={'auto'} maxW={'lg'} py={12} px={6}>
@@ -108,6 +112,8 @@ import { useNavigate } from 'react-router-dom';
           </Box>
         </Stack>
       </Flex>
+      <Footer />
+      </>
     );
   }
 

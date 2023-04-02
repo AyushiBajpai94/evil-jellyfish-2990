@@ -12,6 +12,7 @@ export default function AdminLoginPage() {
     email:'',
     password:''
   })
+
   const adminAuth=useSelector((store)=>{
     return store.adminLoginReducer.isAuth;
   });

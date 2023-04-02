@@ -13,6 +13,8 @@ import Footer from './Components/Footer';
 
 import CartPage from './Pages/CartPage/CartPage';
 
+import { AllRoutes } from './Pages/AllRoutes';
+
 
 function App() {
   return (

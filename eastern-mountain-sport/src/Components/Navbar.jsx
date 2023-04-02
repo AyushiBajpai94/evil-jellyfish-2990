@@ -6,11 +6,38 @@ import {Text, Box,Image, Input,Flex} from "@chakra-ui/react"
 //import logo1 from "../components/logo1"
 import logo from "./AS-removebg-preview-2.png";
 import { Link } from "react-router-dom";
+import { useSelector } from "react-redux";
+import { onAuthStateChanged, signOut } from 'firebase/auth'
+import React ,{useState,useEffect}from 'react'
+import { auth } from '../firebase'
  
 function Navbar(){
+    const {token,isAuth}=useSelector((state)=>state.LoginReducer)
+    const [authUser,setAuthUser]=useState(null)
+    useEffect(()=>{
+        const listen=onAuthStateChanged(auth,(user)=>{
+            if(user){
+                setAuthUser(user)
+            }
+            else{
+                setAuthUser(null)
+            }
+        });
+        return ()=>{
+            listen();
+        }
+    },[]);
+// let name=authUser.email.slice(0,4)
+// console.log(name);
 
+    const usersignOut=()=>{
+        signOut(auth).then(()=>{
+            console.log("sign out Successful")
+        }).catch((err)=>console.log(err))
+    };
 
-
+let UserName=authUser ? authUser.email.slice(0,4):"My Account"
+    // {authUser ? <><h1>{`SignedIn as ${authUser.email.slice(0,4)}`}</h1> <button onClick={usersignOut}>Sign Out</button></>:<h1>SignedOut</h1>}
 
     return(
             <>
@@ -30,10 +57,11 @@ function Navbar(){
         <Box display="flex"  justifyContent="space-evenly" padding={"10px 10px"} border="1px solid black">
            
            {/* <Image   /> */}
-           <img className="image"  src={logo} alt="" />
+         <a href="/"><Image className="image"  src={logo} alt="" /> </a>  
             <Box><Input marginTop={"30px"} marginLeft={"-8rem"} width='800px' size='md' focusBorderColor='pink.400'
     placeholder='Search...'/></Box>
-        <Link to={"/login"}> <Text marginTop={"30px"} fontSize='xl'> <FaUserAlt/> My Accounts</Text> </Link> 
+       <Text marginTop={"30px"} fontSize='xl'>  <Link to={"/login"}> <FaUserAlt /></Link>  {isAuth ? UserName :"My Account" } </Text> 
+       {/* {isAuth==true ? <button onClick={usersignOut}>Sign Out</button>: 'SignIn'} */}
           <Link to={"/cart"}> <Text marginTop={"30px"} fontSize='xl'> <FaShoppingCart/>Cart</Text> </Link>
         </Box> 
       <Flex justifyContent="space-evenly" bgColor="#fff" border="1px solid black">

@@ -13,7 +13,7 @@ import {
     Link
    
   } from '@chakra-ui/react';
- import { Link as RouterLink } from 'react-router-dom';
+ import { Link as RouterLink, useNavigate } from 'react-router-dom';
   import { useState } from 'react';
   import { ViewIcon, ViewOffIcon } from '@chakra-ui/icons';
   import { LoginUser } from '../Redux/LoginRedux/LoginAction';
@@ -23,13 +23,16 @@ import React from 'react'
 
 import { auth } from '../firebase'
 import { useDispatch, useSelector } from 'react-redux';
+import Navbar from '../Components/Navbar';
+import Footer from '../Components/Footer';
 
   
   export default function Login() {
     const [email,setEmail]=useState('')
     const [password,setPassword]=useState('')
     const {token,isAuth}=useSelector((state)=>state.LoginReducer)
-    const dispatch=useDispatch()
+    const dispatch=useDispatch();
+    const navigate=useNavigate();
   console.log(token)
 
 
@@ -42,15 +45,22 @@ import { useDispatch, useSelector } from 'react-redux';
         alert("LoggedIn")
       }).catch((err)=>console.log(err));
       
+    };
+    if(isAuth===true){
+      navigate("/")
     }
+   
   
     return (
+      <>
+      <Navbar />
       <Flex
+      border={"1px solid red"}
         minH={'100vh'}
-        align={'center'}
+        // align={'center'}
         justify={'center'}
         bg={useColorModeValue('gray.50', 'gray.800')}>
-        <Stack spacing={5} mx={'auto'} maxW={'lg'} py={12} px={20}>
+        <Stack spacing={5} mx={'auto'} maxW={'lg'} py={8} px={20}>
           <Stack align={'center'}>
             <Heading fontSize={'4xl'} textAlign={'center'} fontFamily={'sans-serif'}>
               Sign In
@@ -73,6 +83,7 @@ import { useDispatch, useSelector } from 'react-redux';
                     <Input type="password" bgColor={'white'} onChange={(e)=>setPassword(e.target.value)}/>
             </FormControl>
               <Stack spacing={10} pt={2} >
+                {/* <RouterLink to={"/"}> */}
                 <Button
                   loadingText="Submitting"
                   size="lg"
@@ -86,6 +97,8 @@ import { useDispatch, useSelector } from 'react-redux';
                   LogIn
                
                 </Button>
+                {/* </RouterLink> */}
+              
               </Stack>
               <Box style={{borderBottom:'1px solid black',borderTop:'1px solid black',padding:'6px',}}>
               <Link color={'#4e6d58'}>Forgot password?</Link>
@@ -100,6 +113,8 @@ import { useDispatch, useSelector } from 'react-redux';
           </Box>
         </Stack>
       </Flex>
+      <Footer />
+      </>
     );
   }
 
