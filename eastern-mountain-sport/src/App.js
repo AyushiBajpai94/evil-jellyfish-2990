@@ -2,10 +2,8 @@ import AdminRoutes from './admin/pages/AdminRoutes';
 import './App.css';
 import Homepage from './Pages/HomePage';
 
-import Checkout from './Pages/CartPage/Checkout';
 import { AllRoutes } from './Pages/AllRoutes';
 
-import Checkout from './Pages/CheckoutPage/Checkout';
 import Login from './Pages/Login';
 import Register from './Pages/RegisterPage';
 import AuthDetails from './Pages/AuthDetail';
