@@ -36,6 +36,7 @@ function Navbar(){
         }).catch((err)=>console.log(err))
     };
 
+    
 let UserName=authUser ? authUser.email.slice(0,4):"My Account"
     // {authUser ? <><h1>{`SignedIn as ${authUser.email.slice(0,4)}`}</h1> <button onClick={usersignOut}>Sign Out</button></>:<h1>SignedOut</h1>}
 
@@ -70,7 +71,7 @@ let UserName=authUser ? authUser.email.slice(0,4):"My Account"
                 <ul class="menu-main">
                    
                     <li class="menu-item-has-children">
-                        <a href="/">MEN</a>
+                        <Link to={"/mens"}>MEN</Link>
                         <div class="sub-menu mega-menu mega-menu-column-4">
                             <div class="list-item">
                                 <h4 class="title">JACKETS</h4>
@@ -143,7 +144,7 @@ let UserName=authUser ? authUser.email.slice(0,4):"My Account"
                     </li>
                     
                     <li class="menu-item-has-children">
-                        <a href="/">WOMEN</a>
+                    <Link to={"/womens"}>WOMEN</Link>
                         <div class="sub-menu mega-menu mega-menu-column-4">
                             <div class="list-item">
                                 <h4 class="title">JACKETS</h4>

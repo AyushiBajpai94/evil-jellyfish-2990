@@ -1,9 +1,13 @@
-import { PRODUCT_FAILURE, PRODUCT_REQUEST, PRODUCT_SUCCESS } from "./actionTypes";
+import { MEN_PRODUCT_SUCCESS, POST_TO_CART, PRODUCT_FAILURE, PRODUCT_REQUEST, PRODUCT_SUCCESS, WOMEN_PRODUCT_SUCCESS } from "./actionTypes";
+import CartPage from "../../Pages/CartPage/CartPage";
 
 const initialState = {
     isLoading: false,
     isError: false,
-    products: [],   
+    // products: [],
+    mensdata : [],
+    womensdata : [],
+    Cart: []
 }
 
 export const reducer = (state = initialState, { type, payload }) => {
@@ -11,10 +15,14 @@ export const reducer = (state = initialState, { type, payload }) => {
     switch (type) {
         case PRODUCT_REQUEST:
             return { ...state, isLoading: true }
-        case PRODUCT_SUCCESS:
-            return { ...state, isLoading: false, products: payload }
+        case MEN_PRODUCT_SUCCESS:
+            return { ...state, isLoading: false, mensdata: payload }
+        case WOMEN_PRODUCT_SUCCESS:
+            return { ...state, isLoading: false, womensdata: payload }
         case PRODUCT_FAILURE:
-            return {...state, isLoading: false, isError: true}
+            return { ...state, isLoading: false, isError: true }
+        case POST_TO_CART:
+            return { ...state, Cart: [...state.Cart, payload] }
         default: return state;
     }
 }

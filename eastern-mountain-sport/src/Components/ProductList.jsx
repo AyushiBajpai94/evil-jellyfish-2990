@@ -13,7 +13,8 @@ const ProductList = () => {
     console.log(location);
     const [searchParams] = useSearchParams()
     const dispatch = useDispatch()
-    const product = useSelector((store) => store.productReducer.products)
+    const product = useSelector((store) => store.productReducer.mensdata)
+    
     console.log(product);
 
     let obj = {

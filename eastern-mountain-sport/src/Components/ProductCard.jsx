@@ -18,7 +18,7 @@ export default function ProductCard({ name, image, price, color_image, id, nots,
     return (
         <Container className='cards' style={styles} paddingLeft={"5px"} fontSize={"md"} fontFamily={"monospace"} cursor={"pointer"}>
             <Box h={400} background={"white"} alignItems="center" justifyContent="center" borderWidth="1px" shadow="sm">
-                <Link to={`/productdetail/${id}/${colorEl}/${boolean}/${state}`}>
+            <Link to={`/productdetail/${id}/${colorEl}/${boolean}/${state}`}>
 
                     <Image  h={280} w={260} margin={"auto"} src={boolean ? image[state] : colorEl}
                         onMouseOut={() => setState(0)}

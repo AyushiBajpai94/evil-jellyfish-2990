@@ -21,7 +21,7 @@ import {
 function Homepage(){
 
 return ( <>
-    <Navbar/>
+<Navbar/>
          <Box>
             <VStack>
                 <Box>
