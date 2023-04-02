@@ -10,14 +10,20 @@ import {
 
   import React from 'react';
   import { Button, ButtonGroup } from '@chakra-ui/react'
+import { useNavigate } from 'react-router-dom';
 
 function ProductSuccessAlert() {
     const { isOpen, onOpen, onClose } = useDisclosure()
     const cancelRef = React.useRef()
+    const navigate = useNavigate();
+
   
     return (
       <>
-        <Button colorScheme='red' onClick={onOpen}>
+        <Button colorScheme='red' onClick={() => {
+          onOpen();      
+
+        }}>
         Place Order
         </Button>
   
@@ -40,7 +46,10 @@ function ProductSuccessAlert() {
                 <Button ref={cancelRef} onClick={onClose}>
                   Cancel
                 </Button>
-                <Button colorScheme='red' onClick={onClose} ml={3}>
+                <Button colorScheme='red' onClick={() => {
+                  onClose();
+                  navigate("/")
+                }} ml={3}>
                   Ok
                 </Button>
               </AlertDialogFooter>
