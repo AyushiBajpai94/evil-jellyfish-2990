@@ -4,7 +4,7 @@ import ProductSuccessAlert from './ProductSuccessAlert';
 
 
 function PaymentForm() {
-  const [cardNumber, setCardNumber] = useState('1234');
+  const [cardNumber, setCardNumber] = useState('3782-8224-6310-005');
   const [cardName, setCardName] = useState('Vinod Hadmode');
   const [cardExpiry, setCardExpiry] = useState('2024');
   const [cardCVC, setCardCVC] = useState('375');
@@ -26,19 +26,16 @@ function PaymentForm() {
     setCardCVC(event.target.value);
   };
 
-  function myFunction() {
-    alert("I am an alert box!");
-  }
+  
 
   const handleSubmit = (e) => {
     e.preventDefault()
-    myFunction()
   }
   return (
     <div>
 
       <Form action="">
-        <h1>Payment Method</h1> <br />
+        <h1> <b>Payment Method</b> </h1> <br />
         <label htmlFor="cardNumber">Card Number</label>
         <input
           type="text"

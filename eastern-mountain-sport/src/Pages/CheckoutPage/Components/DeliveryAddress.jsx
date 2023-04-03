@@ -33,7 +33,7 @@ function DeliveryAddress() {
         <div>
             <div className='shipping-address'>
                 <form onSubmit={handleSubmit}>
-                    <h1>Shipping Address</h1>
+                    <h1> <b>Shipping Address</b> </h1> 
                     <label>Email</label>
                     <input type="email" placeholder='Email' name="email" value={formState.email}
                         onChange={handleChange} />
