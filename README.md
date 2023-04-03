@@ -1,6 +1,12 @@
 # evil-jellyfish-2990
 EMS.com- sports product based e-commerce website
+EMS sells outdoor equipment and clothing from both name brands and its own EMS line.
+Deployed Link : https://eastern-mountain-sport.vercel.app/
+
+Home
 ![Screenshot_2023-04-03_11-17-26](https://user-images.githubusercontent.com/107040689/229421929-74238345-f2de-4889-a8cb-49fa9c211188.png)
+
+Product
 ![Screenshot_2023-04-03_11-18-21](https://user-images.githubusercontent.com/107040689/229422033-aa0f685c-bdc0-4794-9d39-760ca0e3ca8b.png)
 ![Screenshot_2023-04-03_11-19-07](https://user-images.githubusercontent.com/107040689/229422152-ef707ffc-8c9f-4469-a142-10cb0eea6305.png)
 ![Screenshot_2023-04-03_11-19-38](https://user-images.githubusercontent.com/107040689/229422246-9c55bf39-6846-4388-95c6-ce2ab4ee409e.png)
